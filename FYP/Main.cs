@@ -128,8 +128,12 @@ namespace Login
         {
             DataTable db_orders = db.getDb("orders where status not in('finish') and orderdate = CURDATE()");
             label6.Text = db_orders.Rows.Count.ToString();
-            DataTable db_price = db.query("Select Sum(totalPrice) from orders where status not in('finish') and orderdate = CURDATE()");
-            label9.Text = "$"+db_price.Rows[0][0].ToString();
+            DataTable db_price = db.query("Select Sum(totalPrice) from orders where status not in('cancel') and orderdate = CURDATE()");
+            if (db_price.Rows[0][0].ToString().Equals("") || db_price.Rows[0][0].ToString() == "" || db_price.Rows[0][0].ToString() == null)
+            {
+                label9.Text = "$0";
+            }
+            else { label9.Text = "$" + db_price.Rows[0][0].ToString(); }
             DataTable db_Student = db.query("SELECT status,count(*) FROM `student` group by `status`");
             label12.Text = "0";
             label14.Text = "0";
