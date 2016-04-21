@@ -1,0 +1,112 @@
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.AddValue.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.FoodType.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.kitchenView.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Login.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Main.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainCategory.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainMenu.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainMenuFood.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainUser.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Properties.Resources.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Report.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.SplashScreen.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.csproj.GenerateResource.Cache
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\bin\Debug\FYP.exe
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\bin\Debug\FYP.pdb
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\bin\Debug\MySql.Data.dll
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.exe
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.pdb
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.DatabaseConnect.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainMenu_v2.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.ChangeMenu.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.OpenChangeMenu.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\FYP.exe
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\FYP.pdb
+C:\Users\a1\Desktop\FYP\FYP\bin\Debug\FYP.exe
+C:\Users\a1\Desktop\FYP\FYP\bin\Debug\FYP.pdb
+C:\Users\a1\Desktop\FYP\FYP\bin\Debug\MySql.Data.dll
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.addChange.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.AddValue.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.ChangeMenu.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.DatabaseConnect.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.FoodType.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.kitchenView.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.Login.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.Main.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.MaintainCategory.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.MaintainMenu.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.MaintainMenuFood.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.MaintainMenu_v2.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.MaintainUser.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.OpenChangeMenu.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.Properties.Resources.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.Report.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.SplashScreen.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\Login.ViewOrder.resources
+C:\Users\a1\Desktop\FYP\FYP\obj\x86\Debug\FYP.csproj.GenerateResource.Cache
+E:\FYP\FYP\obj\x86\Debug\FYP.exe
+E:\FYP\FYP\obj\x86\Debug\FYP.pdb
+E:\FYP\FYP\bin\Debug\FYP.exe
+E:\FYP\FYP\bin\Debug\FYP.pdb
+E:\FYP\FYP\bin\Debug\MySql.Data.dll
+E:\FYP\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
+E:\FYP\FYP\obj\x86\Debug\Login.addChange.resources
+E:\FYP\FYP\obj\x86\Debug\Login.AddValue.resources
+E:\FYP\FYP\obj\x86\Debug\Login.ChangeMenu.resources
+E:\FYP\FYP\obj\x86\Debug\Login.DatabaseConnect.resources
+E:\FYP\FYP\obj\x86\Debug\Login.FoodType.resources
+E:\FYP\FYP\obj\x86\Debug\Login.kitchenView.resources
+E:\FYP\FYP\obj\x86\Debug\Login.Login.resources
+E:\FYP\FYP\obj\x86\Debug\Login.Main.resources
+E:\FYP\FYP\obj\x86\Debug\Login.MaintainCategory.resources
+E:\FYP\FYP\obj\x86\Debug\Login.MaintainMenu.resources
+E:\FYP\FYP\obj\x86\Debug\Login.MaintainMenuFood.resources
+E:\FYP\FYP\obj\x86\Debug\Login.MaintainMenu_v2.resources
+E:\FYP\FYP\obj\x86\Debug\Login.MaintainUser.resources
+E:\FYP\FYP\obj\x86\Debug\Login.OpenChangeMenu.resources
+E:\FYP\FYP\obj\x86\Debug\Login.Properties.Resources.resources
+E:\FYP\FYP\obj\x86\Debug\Login.Report.resources
+E:\FYP\FYP\obj\x86\Debug\Login.SplashScreen.resources
+E:\FYP\FYP\obj\x86\Debug\Login.ViewOrder.resources
+E:\FYP\FYP\obj\x86\Debug\FYP.csproj.GenerateResource.Cache
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.addMenuType.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.addFood.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.GenXlsx.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.viewOrderDetail.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Staff.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Refund.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.exe
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.pdb
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.addFood.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.addMenuType.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.AddValue.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.ChangeMenu.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.DatabaseConnect.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.FoodType.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.GenXlsx.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.kitchenView.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Login.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Main.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainCategory.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainMenu.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainMenuFood.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainMenu_v2.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.MaintainUser.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.OpenChangeMenu.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Properties.Resources.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Refund.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Report.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.SplashScreen.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Staff.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.ViewOrder.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.viewOrderDetail.resources
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.csproj.GenerateResource.Cache
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\bin\Debug\FYP.exe
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\bin\Debug\FYP.pdb
+\\DESKTOP-R889G26\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\bin\Debug\MySql.Data.dll
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.SetTime.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.OldDataToDB.resources
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
+C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Form1.resources

@@ -1,0 +1,4 @@
+server = 192.168.1.102
+database = fyp_db
+uid = root
+password = 

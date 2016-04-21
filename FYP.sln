@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP", "FYP\FYP.csproj", "{D58770F8-9090-409B-8856-47F8A5F3423B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFYP", "SetupFYP\SetupFYP.vdproj", "{25629C78-AEEF-440E-9FFA-32015492150B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D58770F8-9090-409B-8856-47F8A5F3423B}.Debug|x86.ActiveCfg = Debug|x86
+		{D58770F8-9090-409B-8856-47F8A5F3423B}.Debug|x86.Build.0 = Debug|x86
+		{D58770F8-9090-409B-8856-47F8A5F3423B}.Release|x86.ActiveCfg = Release|x86
+		{D58770F8-9090-409B-8856-47F8A5F3423B}.Release|x86.Build.0 = Release|x86
+		{25629C78-AEEF-440E-9FFA-32015492150B}.Debug|x86.ActiveCfg = Debug
+		{25629C78-AEEF-440E-9FFA-32015492150B}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
