@@ -110,3 +110,5 @@ C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login
 C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.OldDataToDB.resources
 C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
 C:\Users\wongp\Documents\Visual Studio 2010\Projects\FYP\FYP\obj\x86\Debug\Login.Form1.resources
+C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.exe
+C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.pdb
