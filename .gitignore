@@ -57,6 +57,7 @@ FYP/build/
 FYP/[Bb]in/
 FYP/[Oo]bj/
 FYP/[Pp]roperties/
+FYP/obj/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
