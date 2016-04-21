@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using System.Net;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace Login
 {
@@ -22,7 +24,10 @@ namespace Login
         private DateTime endTime ;
         private Thread t;
         public Boolean lockEdit = true;
-
+        private List<String> mid = new List<string>();
+        System.Data.OleDb.OleDbConnection MyConnection;
+        System.Data.DataSet DtSet;
+        System.Data.OleDb.OleDbDataAdapter MyCommand;
         
 
         public Main(Login login)
@@ -32,7 +37,7 @@ namespace Login
             this.login = login;
             this.db = login.database;
             this.KeyPreview = true;
-            
+            updateMenu();
             
             AddValue addValue = new AddValue(this);
             MaintainMenu mMenu = new MaintainMenu(this);
@@ -73,10 +78,106 @@ namespace Login
             System.IO.Directory.CreateDirectory(subPath + "\\" + menuday);
         }
 
+        private void updateMenu()
+        {
+            if (db.date.Equals(DateTime.Today.ToShortDateString()))
+            {
+                MessageBox.Show("Menu is updated");
+            }
+            else {
+                
+            
+                String fileName = "";
+                DateTime now = DateTime.Today;
+                String[] temp = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+                String s ="";
+                for (int i = 0; i < temp.Length; i++)
+                {
+               
+                    if (temp[i].Equals(now.DayOfWeek.ToString()))
+                    {
+                        s = i + 1 + temp[i];
+                    }
+                }
+                fileName += s+"\\" + now.Day + "_" + now.Month + "_" + now.Year + ".xlsx";
+                DataTable dt_menu = readXlsx("menu", "where isshow='Y'",fileName);
+                DataTable dt_dbmenu = db.getDb("menu");
+                for (int i = 0; i < dt_menu.Rows.Count; i++) {
+                    String price = "";
+                    if (dt_menu.Rows[i]["price"].ToString() == null || dt_dbmenu.Rows[i]["price"].ToString().Equals("") || dt_dbmenu.Rows[i]["price"].ToString() == "" || dt_dbmenu.Rows[i]["price"].ToString() == " ")
+                    {
+                        price = "null";
+                    }
+                    else {
+                        price = dt_menu.Rows[i]["price"].ToString();
+                    }
+                    String s1 = "UPDATE `menu` SET `name`='" + dt_menu.Rows[i]["name"].ToString() + "',`shortName`='" + dt_menu.Rows[i]["shortname"].ToString() + "',`price`= " + price + ",`mCateId`='" + dt_menu.Rows[i]["mcateid"].ToString() + "',`isShow`='" + dt_menu.Rows[i]["isshow"].ToString() + "' WHERE `menuId`='" + dt_menu.Rows[i]["menuid"].ToString() + "'";
+                    db.queny(s1);
+                    mid.Add(dt_menu.Rows[i]["menuid"].ToString());
+                }
+
+                for (int i = 0; i < dt_dbmenu.Rows.Count; i++) {
+                    Boolean chk = false;
+                    for(int t=0;t<mid.Count;t++){
+                        if(dt_dbmenu.Rows[i]["menuid"].ToString().Equals(mid[t])){
+                            MessageBox.Show("HI");
+                            chk = true;
+                            
+                        }
+                    }
+                    if (!chk)
+                    {
+                        String s1 = "UPDATE `menu` SET `isShow`='N' WHERE `menuId`='" + dt_dbmenu.Rows[i]["menuid"].ToString() + "'";
+                        db.queny(s1);
+                        MessageBox.Show(s1);
+                    }
+                }
+                db.changeDate(DateTime.Today.ToShortDateString());
+            }
+            
+        }
+
+        private DataTable readXlsx(String tableName,String wherecause, String fileName) {
+
+              try
+            {
+              
+                String appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\menu\\";
+                String menu = "["+tableName+"$]"+wherecause;
+                MyConnection = new System.Data.OleDb.OleDbConnection("provider=Microsoft.Ace.OLEDB.12.0;Data Source='" + appPath + fileName + "';Extended Properties=Excel 12.0;");
+                MyCommand = new System.Data.OleDb.OleDbDataAdapter("select * from " + menu, MyConnection);
+                MyCommand.TableMappings.Add("Table", "TestTable");
+                DtSet = new System.Data.DataSet();
+                MyCommand.Fill(DtSet);
+                MyConnection.Close();
+                return DtSet.Tables[0];
+            }
+            catch
+            {
+                String[] temp = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+                String s = "";
+                for (int i = 0; i < temp.Length; i++)
+                {
+
+                    if (temp[i].Equals(DateTime.Now.DayOfWeek.ToString()))
+                    {
+                        s = i + 1 + temp[i];
+                    }
+                }
+                fileName = s + "\\test.xlsx";
+                DataTable a  = readXlsx(tableName,wherecause,fileName);
+              
+                return a;
+            }
+              
+
+        }
+
+
         public void Main_Load(object sender, EventArgs e)
         {
-            startTime = DateTime.Parse(getTimefromjson("http://" + db.id.Split(' ')[1] + "/fyp_php/pc/start.php"));
-            endTime = DateTime.Parse(getTimefromjson("http://" + db.id.Split(' ')[1] + "/fyp_php/pc/end.php"));
+            startTime = DateTime.Parse(getTimefromjson("http://" + db.id + "/fyp_php/pc/start.php"));
+            endTime = DateTime.Parse(getTimefromjson("http://" + db.id + "/fyp_php/pc/end.php"));
             label3.Text = startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
             System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
             var y = screen.WorkingArea.Width;

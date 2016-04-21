@@ -183,7 +183,7 @@ namespace Login
                         PictureBox pictureBox1 = new PictureBox();
                         try
                         {
-                            pictureBox1.ImageLocation = "http://"+main.db.id.Split(' ')[1]+"/fyp_php/" + dt_food.Rows[k]["img"].ToString();
+                            pictureBox1.ImageLocation = "http://"+main.db.id+"/fyp_php/" + dt_food.Rows[k]["img"].ToString();
                         }
                         catch (System.IO.FileNotFoundException)
                         {

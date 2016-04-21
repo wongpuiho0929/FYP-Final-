@@ -1,4 +1,5 @@
-server = 127.0.0.1
-database = fyp_db
-uid = root
-password = 
+server =127.0.0.1
+database =fyp_db
+uid =root
+password =
+currentday =22/4/2016

@@ -236,7 +236,6 @@ namespace Login
             Label lab = (Label)tableLayoutPanel1.GetControlFromPosition(0,i);
             dt_menu.Rows.Find(lab.Tag).SetField("isShow","Y");
             for (int k = 0; k < dt_menufood.Rows.Count; k++) {
-                MessageBox.Show(dt_menufood.Rows[k]["menuid"].ToString()+lab.Tag.ToString());
                 if (dt_menufood.Rows[k]["menuid"].ToString().Equals(lab.Tag.ToString()))
                     {
                         dt_menufood.Rows[k].Delete();
@@ -295,6 +294,7 @@ namespace Login
             app.Quit();
             Marshal.FinalReleaseComObject(app);
         }
+        MessageBox.Show("Save");
     }
     private void genXMLData(DataTable dt, Excel.Worksheet wsh)
     {
@@ -390,6 +390,11 @@ namespace Login
     }
 
     private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void LinkMenuFood_Click(object sender, EventArgs e)
     {
 
     }

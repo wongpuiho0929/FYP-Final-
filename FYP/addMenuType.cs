@@ -73,7 +73,7 @@ namespace Login
                 {
                     try
                     {
-                        pictureBox1.ImageLocation = "http://" + main.db.id.Split(' ')[1] + "/fyp_php/" + dt.Rows[0]["img"].ToString();
+                        pictureBox1.ImageLocation = "http://" + main.db.id + "/fyp_php/" + dt.Rows[0]["img"].ToString();
                     }
                     catch (System.IO.FileNotFoundException) { 
                     
@@ -217,7 +217,7 @@ namespace Login
                 using (WebClient client = new WebClient())
                 {
                     client.Headers.Add("Content-Type", "application/octet-stream");
-                    String s = "http://"+main.db.id.Split(' ')[1]+"/fyp_php/uploadImgGet.php?action=image&which=" + txt_id.Text;
+                    String s = "http://"+main.db.id+"/fyp_php/uploadImgGet.php?action=image&which=" + txt_id.Text;
                     client.UploadFile(new Uri(s), "POST", @photoPath);
                     MessageBox.Show("Updated");
                 }
@@ -704,6 +704,11 @@ namespace Login
         private void btn_Back_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 0;
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
 
        

@@ -12,14 +12,39 @@ namespace Login
   
     public  class Database{
         public MySqlConnection cnn;
-        private static String[] text = new String[4];
+        private static String[] text = new String[5];
         //connetionString = "Server=" + server + ";Database=" + database + ";";
         public String id;
+        public String date;
 
         public void changeConnection(String s,String u,String p) {
-            string[] lines = { "server = "+s, "database = fyp_db", "uid = "+u,"password = "+p };
+            string[] lines = { "server ="+s, "database =fyp_db", "uid ="+u,"password ="+p };
             System.IO.File.WriteAllLines(@"1.txt", lines);
 
+        }
+        public void changeDate(String d) {
+            try
+            {
+
+                string[] lines = System.IO.File.ReadAllLines(@"1.txt");
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String temp = lines[i].Substring(lines[i].IndexOf("=")+1);
+                    text[i] = temp;
+                }
+               
+                id = text[0];
+                date = text[4];
+                string[] line1 = { "server =" + text[0], "database =fyp_db", "uid =" + text[2], "password =" + text[3], "currentday ="+d };
+                System.IO.File.WriteAllLines(@"1.txt", line1);
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                using (StreamWriter sw = File.CreateText(@"1.txt"))
+                {
+                    sw.WriteLine("Hello");
+                }
+            }
         }
 
         public int dailyChange() {
@@ -51,6 +76,7 @@ namespace Login
                     text[i] = temp;
                 }
                 id = text[0];
+                date = text[4];
                 String connetionString = "Server=" + text[0] + ";Database=" + text[1] + ";UiD=" + text[2] + ";Pwd=" + text[3] + "; Charset=utf8";
                 cnn = new MySqlConnection(connetionString);
             }

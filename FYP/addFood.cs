@@ -170,7 +170,7 @@ namespace Login
             try
             {
 
-                pictureBox1.ImageLocation = "http://" + main.db.id.Split(' ')[1] + "/fyp_php/" + dt_food.Rows[0]["img"].ToString();
+                pictureBox1.ImageLocation = "http://" + main.db.id + "/fyp_php/" + dt_food.Rows[0]["img"].ToString();
             }
             catch (System.IO.FileNotFoundException e)
             {
@@ -201,7 +201,7 @@ namespace Login
                 using (WebClient client = new WebClient())
                 {
                     client.Headers.Add("Content-Type", "application/octet-stream");
-                    String s = "http://"+main.db.id.Split(' ')[1]+"/fyp_php/uploadImgGet.php?action=image&which=" + fid;
+                    String s = "http://"+main.db.id+"/fyp_php/uploadImgGet.php?action=image&which=" + fid;
                     client.UploadFile(new Uri(s), "POST", @photoPath);
                     MessageBox.Show("Updated"); 
                    

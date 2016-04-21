@@ -47,9 +47,9 @@ namespace Login
         private void SetTime_Load(object sender, EventArgs e)
         {
 
-            startTime = DateTime.Parse(main.getTimefromjson("http://" + main.db.id.Split(' ')[1] + "/fyp_php/pc/start.php"));
-            endTime = DateTime.Parse(main.getTimefromjson("http://" + main.db.id.Split(' ')[1] + "/fyp_php/pc/end.php"));
-            quota = main.getTimefromjson("http://"+main.db.id.Split(' ')[1] + "/fyp_php/pc/quota.php");
+            startTime = DateTime.Parse(main.getTimefromjson("http://" + main.db.id + "/fyp_php/pc/start.php"));
+            endTime = DateTime.Parse(main.getTimefromjson("http://" + main.db.id + "/fyp_php/pc/end.php"));
+            quota = main.getTimefromjson("http://"+main.db.id + "/fyp_php/pc/quota.php");
             comboBox1.SelectedItem = quota;
             combo_Start.SelectedItem = startTime.ToShortTimeString();
             combo_End.SelectedItem = endTime.ToShortTimeString();
@@ -78,11 +78,11 @@ namespace Login
         private void button1_Click(object sender, EventArgs e)
         {
             string param = "action=set&value=" + combo_Start.SelectedItem;
-            settimetojson(param, "http://" + main.db.id.Split(' ')[1] + "/fyp_php/pc/start.php");
+            settimetojson(param, "http://" + main.db.id + "/fyp_php/pc/start.php");
             param = "action=set&value=" + combo_End.SelectedItem;
-            settimetojson(param, "http://" + main.db.id.Split(' ')[1] + "/fyp_php/pc/end.php");
+            settimetojson(param, "http://" + main.db.id + "/fyp_php/pc/end.php");
             param = "action=set&value=" + comboBox1.SelectedItem;
-            settimetojson(param, "http://" + main.db.id.Split(' ')[1] + "/fyp_php/pc/quota.php");
+            settimetojson(param, "http://" + main.db.id + "/fyp_php/pc/quota.php");
             this.Close();
         }
 

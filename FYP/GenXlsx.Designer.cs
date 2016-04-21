@@ -105,6 +105,7 @@
             this.LinkMenuFood.TabIndex = 0;
             this.LinkMenuFood.Text = "tabPage1";
             this.LinkMenuFood.UseVisualStyleBackColor = true;
+            this.LinkMenuFood.Click += new System.EventHandler(this.LinkMenuFood_Click);
             // 
             // Confirm
             // 
