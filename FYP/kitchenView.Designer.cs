@@ -32,13 +32,16 @@
             this.gb_OrderStatus = new System.Windows.Forms.GroupBox();
             this.btn_print = new System.Windows.Forms.Button();
             this.gbFunction = new System.Windows.Forms.GroupBox();
+            this.btn_TimeClear = new System.Windows.Forms.Button();
             this.gb_foobType = new System.Windows.Forms.GroupBox();
             this.gb_Information = new System.Windows.Forms.GroupBox();
             this.lbl_tov = new System.Windows.Forms.Label();
             this.FLP1 = new System.Windows.Forms.FlowLayoutPanel();
             this.FLP2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_quickPrint = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb_OrderStatus.SuspendLayout();
+            this.gbFunction.SuspendLayout();
             this.gb_Information.SuspendLayout();
             this.FLP1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +71,7 @@
             // 
             // btn_print
             // 
+            this.btn_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_print.Location = new System.Drawing.Point(4, 13);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(143, 81);
@@ -78,12 +82,25 @@
             // 
             // gbFunction
             // 
+            this.gbFunction.Controls.Add(this.btn_quickPrint);
+            this.gbFunction.Controls.Add(this.btn_TimeClear);
             this.gbFunction.Location = new System.Drawing.Point(7, 140);
             this.gbFunction.Name = "gbFunction";
             this.gbFunction.Size = new System.Drawing.Size(138, 242);
             this.gbFunction.TabIndex = 1;
             this.gbFunction.TabStop = false;
             this.gbFunction.Text = "Take Time";
+            // 
+            // btn_TimeClear
+            // 
+            this.btn_TimeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TimeClear.Location = new System.Drawing.Point(71, 19);
+            this.btn_TimeClear.Name = "btn_TimeClear";
+            this.btn_TimeClear.Size = new System.Drawing.Size(59, 86);
+            this.btn_TimeClear.TabIndex = 0;
+            this.btn_TimeClear.Text = "Clear time";
+            this.btn_TimeClear.UseVisualStyleBackColor = true;
+            this.btn_TimeClear.Click += new System.EventHandler(this.btn_TimeClear_Click);
             // 
             // gb_foobType
             // 
@@ -133,6 +150,17 @@
             this.FLP2.TabIndex = 3;
             this.FLP2.Visible = false;
             // 
+            // btn_quickPrint
+            // 
+            this.btn_quickPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_quickPrint.Location = new System.Drawing.Point(71, 160);
+            this.btn_quickPrint.Name = "btn_quickPrint";
+            this.btn_quickPrint.Size = new System.Drawing.Size(75, 67);
+            this.btn_quickPrint.TabIndex = 1;
+            this.btn_quickPrint.Text = "Quick Group by time Print";
+            this.btn_quickPrint.UseVisualStyleBackColor = true;
+            this.btn_quickPrint.Click += new System.EventHandler(this.btn_quickPrint_Click);
+            // 
             // kitchenView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +175,7 @@
             this.Load += new System.EventHandler(this.kitchenView_Load);
             this.gb1.ResumeLayout(false);
             this.gb_OrderStatus.ResumeLayout(false);
+            this.gbFunction.ResumeLayout(false);
             this.gb_Information.ResumeLayout(false);
             this.gb_Information.PerformLayout();
             this.FLP1.ResumeLayout(false);
@@ -165,5 +194,7 @@
         private System.Windows.Forms.GroupBox gbFunction;
         private System.Windows.Forms.FlowLayoutPanel FLP2;
         private System.Windows.Forms.Button btn_print;
+        private System.Windows.Forms.Button btn_TimeClear;
+        private System.Windows.Forms.Button btn_quickPrint;
     }
 }

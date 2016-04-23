@@ -15,6 +15,9 @@ namespace Login
 {
     public partial class kitchenView : Form
     {
+
+        private DateTime today;
+        private String todayString;
         private int screenWidth = Screen.PrimaryScreen.Bounds.Width;
         private int screenHeight = Screen.PrimaryScreen.Bounds.Height;
         private Reprint rp;
@@ -28,8 +31,8 @@ namespace Login
         private List<Label> labelList;
         private int x = 0;
         private System.Windows.Forms.Button printButton;
-        private Font printFont;
-        private StreamReader streamToPrint;
+       /* private Font printFont;
+        private StreamReader streamToPrint;*/
         private List<String> timeList = new List<string>();
         private List<String> typeList = new List<string>();
         public kitchenView(Login login)
@@ -40,6 +43,8 @@ namespace Login
 
         private void kitchenView_Load(object sender, EventArgs e)
         {
+            today = DateTime.Today;
+            todayString = today.ToString("dd-MM-yyyy");
             this.Width = screenWidth;
             this.Height = screenHeight;
             this.WindowState = FormWindowState.Maximized;
@@ -52,8 +57,7 @@ namespace Login
             db = new Database();
             db.Connection();
             labelList = new List<Label>();
-            rp = new Reprint();
-            gcv = new GroupCountView(login);
+            //gcv = new GroupCountView(login);
             gb_width();
             ov = new orderView();
             gbInformation();
@@ -127,16 +131,16 @@ namespace Login
                 int otakeTime = timeChanger(oldotaketime);
                 if (otakeTime-currentTime > 15) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF"); }
                 else if (otakeTime - currentTime > 10) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFF00"); }
-                else if (otakeTime - currentTime > 5) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000"); }
-                else { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#8B0000"); }
+                else { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000"); }
                 s += "Take Time:"+AllDt.Rows[i]["otaketime"];
                 lb.Text = s;
                 tag[orderDetail.Rows.Count] = AllDt.Rows[i]["otaketime"].ToString().Substring(0, 5);
                 lb.Tag = tag;
                 lb.Click += new EventHandler(orderObject_click);
                 FLP1.Controls.Add(lb);
-                lbl_tov.Text = "Total Order Value:" + AllDt.Rows.Count.ToString();
+                
             }
+            lbl_tov.Text = "Total Order Value:" + FLP1.Controls.Count.ToString();
             control();
         }
         private int timeChanger(String time)
@@ -205,16 +209,16 @@ namespace Login
         
         private void addTakeTime()
         {
-           DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/start.php"));
-           DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/end.php"));
+           DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/start.php"));
+           DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/end.php"));
            
             int startHour = startTime.Hour-1;
             int endHour = endTime.Hour;
             int min = 0;
             int high = 15;
-            double height = 32.25;
+            double height = 30;
             int timeRange = (endHour - (startHour)) * 2;
-            this.gbFunction.Height = (int)(height) * timeRange;
+            this.gbFunction.Height = ((int)(height) * timeRange)+15;
             time = new CheckBoxEx[timeRange];
             for (int i = 0; i < timeRange; i++)
             {
@@ -242,8 +246,12 @@ namespace Login
                 gbFunction.Controls.Add(cb);
                 
             }
+            btn_TimeClear.Location = new Point(120, 15);
+            btn_TimeClear.ClientSize = new Size(70, 100);
+            btn_quickPrint.Location = new Point(120,btn_quickPrint.Location.X + btn_print.ClientSize.Height);
+            btn_quickPrint.ClientSize = new Size(70, 100);
         }
-
+        
         public String getTimefromjson(String url)
         {
             byte[] bs = Encoding.ASCII.GetBytes("action=get");
@@ -283,6 +291,7 @@ namespace Login
                     if (cb.Checked == true)
                     {
                         gcv.Show();
+                        
                     }
                     else
                     {
@@ -293,6 +302,7 @@ namespace Login
                 {
                     gcv = new GroupCountView(login);
                     gcv.Show();
+                    
                 }
             
             
@@ -303,16 +313,26 @@ namespace Login
             try
             {
                 if (cb.Checked == true)
+                {
                     rp.Show();
+                    
+                }
                 else
                     rp.Hide();
             }
             catch (Exception ex)
             {
-                rp = new Reprint();
+                rp = new Reprint(this);
                 rp.Show();
+                
             }
 
+            /*rp = new Reprint(this);
+            rp.Deactivate += delegate
+            {
+                rp.Close();
+            };
+            rp.Show();*/
         }
 
         private void control()
@@ -452,27 +472,32 @@ namespace Login
         private void btn_print_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to print these order?", "Confirmation", MessageBoxButtons.YesNo);
+            Print print = new Print();
+            String nowTime = DateTime.Now.ToString("HH-mm-ss");
+            String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
+            DateTime today = DateTime.Today;
+            String todayString = today.ToString("dd-MM-yyyy");
             if (result == DialogResult.Yes)
             {
                 for (int i = 0; i < labelList.Count; i++)
                 {
-                    String nowTime = DateTime.Now.ToString("HH-mm-ss");
-                    String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
                     String counter = "(" + (i + 1) + "/" + labelList.Count.ToString() + ")";
                     Label lb = labelList[i];
-                    String s = lb.Text;
+                    String s = "Asia Pacific";
+                    s += "\r"+ lb.Text;
                     s += "\r" + nowTime2;
                     s += "\r" + counter;
                     String[] OrderNo = (String[])lb.Tag;
                     String[] context = s.Split('\r');
-                    if (!Directory.Exists(@"C:\\My Documents\\"))
+                    if (!Directory.Exists(@"C:\\My Documents\\"+todayString+"\\"))
                     {
-                        DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\");
+                        DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
                     }
-                    String path = @"C:\\My Documents\\" + context[0] +"_"+nowTime+"_("+(i+1)+"@"+labelList.Count.ToString()+").txt";
+                    String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + (i + 1) + "@" + labelList.Count.ToString() + ").txt";
                     System.IO.File.WriteAllLines(path, context);
-                    print(context[0] + "_" + nowTime + "_(" + (i+1) + "@" + labelList.Count.ToString() + ").txt");
-                    db.update(context[0]);
+                    String filename = (context[1] + "_" + nowTime + "_(" + (i + 1) + "@" + labelList.Count.ToString() + ").txt");
+                    print.print(filename);
+                    db.update(context[1], nowTime2);
                 }
                 labelList.Clear();
                 orderView();
@@ -480,12 +505,82 @@ namespace Login
             }
             else if (result == DialogResult.No)
             {
-                MessageBox.Show("Print is Canelled");
+                MessageBox.Show("Printing is Canelled");
             }
             
            
         }
-        private void print(String fileName)
+
+        private void btn_TimeClear_Click(object sender, EventArgs e)
+        {
+            foreach (CheckBoxEx cb in time)
+            {
+                if (cb.Checked == true)
+                {
+                    cb.Checked = false;
+                }
+            }
+        }
+
+        private void btn_quickPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to print these time group order?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Print print = new Print();
+                String nowTime = DateTime.Now.ToString("HH-mm-ss");
+                String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
+                List<CheckBoxEx> lcb = new List<CheckBoxEx>();
+                int printcount = 0;
+                for (int i = 0; i < time.Length; i++)
+                {
+                    CheckBoxEx cb = time[i];
+                    if (cb.Checked == true)
+                        lcb.Add(cb);
+                }
+
+                foreach (CheckBoxEx cb in lcb)
+                {
+                    DataTable dt = db.printGrp(cb.Text + ":00");
+                    for (int j = 0; j < dt.Rows.Count; j++)
+                    {
+                        printcount++;
+                        String counter = "(" + printcount + "/" + (lcb.Count * dt.Rows.Count) + ")";
+                        String s = "Asia Pacific";
+                        s += "\r" + dt.Rows[j]["orderid"];
+                        DataTable orderDt = db.getDb2(dt.Rows[j]["orderid"].ToString());
+                        for (int k = 0; k < orderDt.Rows.Count; k++)
+                            s += "\r" + orderDt.Rows[k]["shortname"];
+                        s += "\rTake Time:" + dt.Rows[j]["otaketime"]; //get order string end
+                        s += "\r" + nowTime2;
+                        s += "\r" + counter;
+
+                        String[] context = s.Split('\r');
+                        if (!Directory.Exists(@"C:\\My Documents\\" + todayString + "\\"))
+                        {
+                            DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
+                        }
+                        String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt";
+                        System.IO.File.WriteAllLines(path, context);
+                        String filename = (context[1] + "_" + nowTime + "_(" + printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt");
+                        print.print(filename);
+                        db.update(context[1], nowTime2);
+                    }
+                }
+                if (lcb.Count == 0)
+                {
+                    MessageBox.Show("Plesae choose time first!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Printing is Canelled");
+            }
+        }
+
+        
+        
+        /*private void print(String fileName)
         {
             try
             {
@@ -543,7 +638,7 @@ namespace Login
             else
                 ev.HasMorePages = false;
         }
-
+        */
         
     }
 }

@@ -14,6 +14,8 @@ namespace Login
 {
     public partial class GroupCountView : Form
     {
+        private DateTime today;
+        private String todayString;
         private int screenWidth = Screen.PrimaryScreen.Bounds.Width;
         private int screenHeight = Screen.PrimaryScreen.Bounds.Height;
         private orderView ov;
@@ -36,8 +38,9 @@ namespace Login
             gb_fiter.Height = this.Height;
             db = new Database();
             db.Connection();
-            
-            
+
+            today = DateTime.Today;
+            todayString = today.ToString("dd-MM-yyyy");
             ov = new orderView();
             addGBFoodType();
             addTakeTime();
@@ -142,8 +145,64 @@ namespace Login
                 lb.Text += dt.Rows[i]["name"].ToString();
                 lb.Text += "\n" + dt.Rows[i]["count"].ToString();
                 FLP2.Controls.Add(lb);
+                lb.Click += new EventHandler(PrintMessage_click);
             }
 
+        }
+        private void PrintMessage_click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to print these time group order?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Print print = new Print();
+                String nowTime = DateTime.Now.ToString("HH-mm-ss");
+                String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
+                List<CheckBoxEx> lcb = new List<CheckBoxEx>();
+                int printcount = 0;
+                for (int i = 0; i < time.Length; i++)
+                {
+                    CheckBoxEx cb = time[i];
+                    if (cb.Checked == true)
+                        lcb.Add(cb);
+                }
+                
+                foreach (CheckBoxEx cb in lcb)
+                {
+                    DataTable dt = db.printGrp(cb.Text+":00");
+                    for (int j = 0; j < dt.Rows.Count; j++)
+                    {
+                        printcount++;
+                        String counter = "(" + printcount + "/" + (lcb.Count * dt.Rows.Count) + ")";
+                        String s = "Asia Pacific";
+                        s += "\r" + dt.Rows[j]["orderid"];
+                        DataTable orderDt = db.getDb2(dt.Rows[j]["orderid"].ToString());
+                        for (int k = 0; k < orderDt.Rows.Count; k++)
+                            s += "\r" + orderDt.Rows[k]["shortname"];
+                        s += "\rTake Time:" + dt.Rows[j]["otaketime"]; //get order string end
+                        s += "\r" + nowTime2;
+                        s += "\r"+counter;
+
+                        String[] context = s.Split('\r');
+                        if (!Directory.Exists(@"C:\\My Documents\\"+todayString+"\\"))
+                        {
+                            DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
+                        }
+                        String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt";
+                        System.IO.File.WriteAllLines(path, context);
+                        String filename = (context[1] + "_" + nowTime + "_(" +printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt");
+                        print.print(filename);
+                        db.update(context[1], nowTime2);
+                    }
+                }
+                if (lcb.Count == 0)
+                {
+                    MessageBox.Show("Plesae choose time first!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Printing is Canelled");
+            }
         }
         private void addGBFoodType()
         {
@@ -169,8 +228,8 @@ namespace Login
         }
         private void addTakeTime()
         {
-            DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/start.php"));
-            DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/end.php"));
+            DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/start.php"));
+            DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/end.php"));
 
             int startHour = startTime.Hour - 1;
             int endHour = endTime.Hour;

@@ -30,8 +30,8 @@
         {
             this.FLP2 = new System.Windows.Forms.FlowLayoutPanel();
             this.gb_fiter = new System.Windows.Forms.GroupBox();
-            this.gb_time = new System.Windows.Forms.GroupBox();
             this.gb_type = new System.Windows.Forms.GroupBox();
+            this.gb_time = new System.Windows.Forms.GroupBox();
             this.gb_fiter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,15 +53,6 @@
             this.gb_fiter.TabStop = false;
             this.gb_fiter.Text = "Fiter";
             // 
-            // gb_time
-            // 
-            this.gb_time.Location = new System.Drawing.Point(6, 28);
-            this.gb_time.Name = "gb_time";
-            this.gb_time.Size = new System.Drawing.Size(200, 100);
-            this.gb_time.TabIndex = 0;
-            this.gb_time.TabStop = false;
-            this.gb_time.Text = "Time";
-            // 
             // gb_type
             // 
             this.gb_type.Location = new System.Drawing.Point(26, 174);
@@ -70,6 +61,15 @@
             this.gb_type.TabIndex = 0;
             this.gb_type.TabStop = false;
             this.gb_type.Text = "Type";
+            // 
+            // gb_time
+            // 
+            this.gb_time.Location = new System.Drawing.Point(6, 28);
+            this.gb_time.Name = "gb_time";
+            this.gb_time.Size = new System.Drawing.Size(200, 100);
+            this.gb_time.TabIndex = 0;
+            this.gb_time.TabStop = false;
+            this.gb_time.Text = "Time";
             // 
             // GroupCountView
             // 
