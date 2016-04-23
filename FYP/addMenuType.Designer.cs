@@ -31,7 +31,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.chk_null = new System.Windows.Forms.CheckBox();
@@ -80,7 +79,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.flowLayoutPanel1);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.chk_null);
@@ -119,18 +117,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 72;
             this.pictureBox1.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.button2.Location = new System.Drawing.Point(524, 8);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 33);
-            this.button2.TabIndex = 75;
-            this.button2.Text = "History";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -394,6 +380,7 @@
             this.Name = "addMenuType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "addMenuType";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.addMenuType_FormClosed);
             this.Load += new System.EventHandler(this.addChange_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -436,7 +423,6 @@
         private System.Windows.Forms.Button btn_Back;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lab_History;
-        private System.Windows.Forms.Button button2;
 
 
     }

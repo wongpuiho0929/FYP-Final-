@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Net;
 using System.IO;
+using System.Drawing.Printing;
 
 namespace Login
 {
@@ -16,12 +17,19 @@ namespace Login
     {
         private int screenWidth = Screen.PrimaryScreen.Bounds.Width;
         private int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+        private Reprint rp;
+        private GroupCountView gcv;
+        private Database db;
         private orderView ov;
         private ListBox lb;
         private Login login;
         private Thread thread;
         private CheckBoxEx[] time;
+        private List<Label> labelList;
         private int x = 0;
+        private System.Windows.Forms.Button printButton;
+        private Font printFont;
+        private StreamReader streamToPrint;
         private List<String> timeList = new List<string>();
         private List<String> typeList = new List<string>();
         public kitchenView(Login login)
@@ -41,10 +49,14 @@ namespace Login
             this.gb1.Location = new Point(screenWidth - 200, 10);
             this.gb1.Width = 400;
             this.gb1.Height = screenHeight;
-            
+            db = new Database();
+            db.Connection();
+            labelList = new List<Label>();
+            rp = new Reprint();
+            gcv = new GroupCountView(login);
             gb_width();
             ov = new orderView();
-            
+            gbInformation();
             addGBFoodType();
             addTakeTime();
             gb_location();
@@ -83,9 +95,9 @@ namespace Login
         private void orderView()
         {
 
-            while (FLP1.Controls.Count> 0)
+            if (FLP1.Controls.Count> 0)
             {
-                FLP1.Controls.RemoveAt(0);
+                FLP1.Controls.Clear();
             }
            
             ov.setAllDt();
@@ -96,7 +108,7 @@ namespace Login
                 lb.Height = screenHeight / 3;
                 lb.Width = (screenWidth - 250) / 3;
                 lb.Name = AllDt.Rows[i]["orderid"].ToString();
-                lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF");
+                
                 lb.BorderStyle = BorderStyle.FixedSingle;
                 lb.Font = new System.Drawing.Font("Microsoft JhengHei", 30, System.Drawing.FontStyle.Bold);
                 ov.setAllDt(lb.Name.ToString());
@@ -109,6 +121,14 @@ namespace Login
                     s+=orderDetail.Rows[j]["shortname"]+"\r";
                     tag[j] = orderDetail.Rows[j]["ftypeid"].ToString();
                 }
+                String nowTime = DateTime.Now.ToString("HH:mm");
+                int currentTime = timeChanger(nowTime);
+                String oldotaketime = AllDt.Rows[i]["otaketime"].ToString();
+                int otakeTime = timeChanger(oldotaketime);
+                if (otakeTime-currentTime > 15) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF"); }
+                else if (otakeTime - currentTime > 10) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFF00"); }
+                else if (otakeTime - currentTime > 5) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000"); }
+                else { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#8B0000"); }
                 s += "Take Time:"+AllDt.Rows[i]["otaketime"];
                 lb.Text = s;
                 tag[orderDetail.Rows.Count] = AllDt.Rows[i]["otaketime"].ToString().Substring(0, 5);
@@ -119,24 +139,48 @@ namespace Login
             }
             control();
         }
-        private void orderViewGroup()
+        private int timeChanger(String time)
         {
-            while (FLP2.Controls.Count > 0)
-            {
-                FLP2.Controls.RemoveAt(0);
-            }
-            
+            int inttime=0;
+            String[] temp = time.Split(':');
+            inttime = (Convert.ToInt16(temp[0]) * 100) + Convert.ToInt16(temp[1]);
+            return inttime;
+        }
+
+        private void gbInformation()
+        {
+            int high = 40;
+            CheckBoxEx cb = new CheckBoxEx();
+            cb.Location = new Point(10, high);
+            cb.ClientSize = new Size(30, 30);
+            cb.Font = new System.Drawing.Font("Microsoft JhengHei", 12, System.Drawing.FontStyle.Bold);
+            cb.Name = "cb_gcv";
+            cb.Text = "Count Viewer";
+            gb_Information.Controls.Add(cb);
+            cb.CheckedChanged += new EventHandler(CheckBox2_CheckedChanged);
+            cb = new CheckBoxEx();
+            cb.Location = new Point(10, high+31);
+            cb.ClientSize = new Size(30, 30);
+            cb.Font = new System.Drawing.Font("Microsoft JhengHei", 12, System.Drawing.FontStyle.Bold);
+            cb.Name = "cb_reprint";
+            cb.Text = "Reprint";
+            gb_Information.Controls.Add(cb);
+            cb.CheckedChanged += new EventHandler(CheckBox3_CheckedChanged);
         }
 
         private void orderObject_click(object sender, EventArgs e)
         {
             Label lb = (Label)sender;
-            viewOrderDetail vod = new viewOrderDetail(lb);
+            if (labelList.IndexOf(lb)==-1)
+            {
+                labelList.Add(lb);
+            }
+            /*viewOrderDetail vod = new viewOrderDetail(lb);
             vod.Deactivate += delegate
             {
                 vod.Close();
             };
-            vod.Show();
+            vod.Show();*/
         }
         private void addGBFoodType()
         {
@@ -161,9 +205,9 @@ namespace Login
         
         private void addTakeTime()
         {
-           DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/start.php"));
-           DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/end.php"));
-           MessageBox.Show(startTime.Hour +""+ endTime.Hour+"");
+           DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/start.php"));
+           DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/end.php"));
+           
             int startHour = startTime.Hour-1;
             int endHour = endTime.Hour;
             int min = 0;
@@ -230,6 +274,45 @@ namespace Login
         private void CheckBox1_CheckedChanged(Object sender, EventArgs e)
         {
             control();
+        }
+        private void CheckBox2_CheckedChanged(Object sender, EventArgs e)
+        {
+            CheckBoxEx cb =(CheckBoxEx)sender;
+           
+                try {
+                    if (cb.Checked == true)
+                    {
+                        gcv.Show();
+                    }
+                    else
+                    {
+                        gcv.Hide();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    gcv = new GroupCountView(login);
+                    gcv.Show();
+                }
+            
+            
+        }
+        private void CheckBox3_CheckedChanged(Object sender, EventArgs e)
+        {
+            CheckBoxEx cb = (CheckBoxEx)sender;
+            try
+            {
+                if (cb.Checked == true)
+                    rp.Show();
+                else
+                    rp.Hide();
+            }
+            catch (Exception ex)
+            {
+                rp = new Reprint();
+                rp.Show();
+            }
+
         }
 
         private void control()
@@ -366,27 +449,101 @@ namespace Login
             }
         }
 
-        private void rb_normal_CheckedChanged(object sender, EventArgs e)
+        private void btn_print_Click(object sender, EventArgs e)
         {
-            if(rb_normal.Checked == true){
-                FLP1.Visible = true;
-            }
-            else
+            DialogResult result = MessageBox.Show("Do you want to print these order?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                FLP1.Visible = false;
+                for (int i = 0; i < labelList.Count; i++)
+                {
+                    String nowTime = DateTime.Now.ToString("HH-mm-ss");
+                    String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
+                    String counter = "(" + (i + 1) + "/" + labelList.Count.ToString() + ")";
+                    Label lb = labelList[i];
+                    String s = lb.Text;
+                    s += "\r" + nowTime2;
+                    s += "\r" + counter;
+                    String[] OrderNo = (String[])lb.Tag;
+                    String[] context = s.Split('\r');
+                    if (!Directory.Exists(@"C:\\My Documents\\"))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\");
+                    }
+                    String path = @"C:\\My Documents\\" + context[0] +"_"+nowTime+"_("+(i+1)+"@"+labelList.Count.ToString()+").txt";
+                    System.IO.File.WriteAllLines(path, context);
+                    print(context[0] + "_" + nowTime + "_(" + (i+1) + "@" + labelList.Count.ToString() + ").txt");
+                    db.update(context[0]);
+                }
+                labelList.Clear();
+                orderView();
+                MessageBox.Show("Printed");
             }
+            else if (result == DialogResult.No)
+            {
+                MessageBox.Show("Print is Canelled");
+            }
+            
+           
+        }
+        private void print(String fileName)
+        {
+            try
+            {
+                streamToPrint = new StreamReader
+                   ("C:\\My Documents\\" + fileName);
+               
+                try
+                {
+                    printFont = new Font("Arial", 20);
+                    PrintDocument pd = new PrintDocument();
+                    PaperSize paperSize = new PaperSize("My Envelope", 300, 340);
+                    pd.DefaultPageSettings.Margins.Left = 20;
+                    pd.DefaultPageSettings.Margins.Top = 10;
+                    pd.DefaultPageSettings.PaperSize = paperSize;
+                    pd.PrintPage += new PrintPageEventHandler
+                       (this.pd_PrintPage);
+                    pd.PrinterSettings.PrinterName = "Bullzip PDF Printer";
+                    pd.Print();
+                }
+                finally
+                {
+                    streamToPrint.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void pd_PrintPage(object sender, PrintPageEventArgs ev)
+        {
+            float linesPerPage = 0;
+            float yPos = 0;
+            int count = 0;
+            float leftMargin = ev.MarginBounds.Left;
+            float topMargin = ev.MarginBounds.Top;
+            string line = null;
+
+            // Calculate the number of lines per page.
+            linesPerPage = ev.MarginBounds.Height /
+               printFont.GetHeight(ev.Graphics);
+
+            // Print each line of the file.
+            while (count < linesPerPage &&
+               ((line = streamToPrint.ReadLine()) != null))
+            {
+                yPos = topMargin + (count *
+                   printFont.GetHeight(ev.Graphics));
+                ev.Graphics.DrawString(line, printFont, Brushes.Black,
+                   leftMargin, yPos, new StringFormat());
+                count++;
+            }
+            if (line != null)
+                ev.HasMorePages = true;
+            else
+                ev.HasMorePages = false;
         }
 
-        private void rb_group_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rb_group.Checked == true)
-            {
-                FLP2.Visible = true;
-            }
-            else
-            {
-                FLP2.Visible = false;
-            }
-        }
+        
     }
 }

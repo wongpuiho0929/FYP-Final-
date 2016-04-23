@@ -27,23 +27,26 @@ namespace Login
             try
             {
                 streamToPrint = new StreamReader
-                   ("C:\\My Documents\\MyFile.txt");
+                   ("C:\\My Documents\\x.txt");
                 try
                 {
                     printFont = new Font("Arial", 10);
                     PrintDocument pd = new PrintDocument();
                     pd.PrintPage += new PrintPageEventHandler
                        (this.pd_PrintPage);
-                    PrintDialog pdi = new PrintDialog();
-                    pdi.Document = pd;
-                    if (pdi.ShowDialog() == DialogResult.OK)
+                    //PrintDialog pdi = new PrintDialog();
+                    //pdi.Document = pd;
+                    pd.PrinterSettings.PrinterName = "Bullzip PDF Printer";
+                   
+                    /*if (pdi.ShowDialog() == DialogResult.OK)
                     {
                         pd.Print();
-                    }
-                    else
+                    }*/
+                    pd.Print();
+                    /*else
                     {
                         MessageBox.Show("Print Cancelled");
-                    }
+                    }*/
                 }
                 finally
                 {

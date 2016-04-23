@@ -45,8 +45,7 @@ namespace Login
             MaintainUser mUser = new MaintainUser(this);
        
             kitchenView kcv = new kitchenView(login);
-            Report report = new Report(this);
-            Form[] temp = { addValue, mMenu_v2, mUser, kcv, report };
+            Form[] temp = { addValue, mMenu_v2, mUser, kcv };
             frm = temp;
             int count = 0;
             DataTable dt_student = db.getDb("student where status not in('refund','freeze')");
@@ -104,12 +103,9 @@ namespace Login
                 DataTable dt_dbmenu = db.getDb("menu");
                 for (int i = 0; i < dt_menu.Rows.Count; i++) {
                     String price = "";
-                    if (dt_menu.Rows[i]["price"].ToString() == null || dt_dbmenu.Rows[i]["price"].ToString().Equals("") || dt_dbmenu.Rows[i]["price"].ToString() == "" || dt_dbmenu.Rows[i]["price"].ToString() == " ")
-                    {
+                    price = dt_menu.Rows[i]["price"].ToString();
+                    if (price.Equals("")) {
                         price = "null";
-                    }
-                    else {
-                        price = dt_menu.Rows[i]["price"].ToString();
                     }
                     String s1 = "UPDATE `menu` SET `name`='" + dt_menu.Rows[i]["name"].ToString() + "',`shortName`='" + dt_menu.Rows[i]["shortname"].ToString() + "',`price`= " + price + ",`mCateId`='" + dt_menu.Rows[i]["mcateid"].ToString() + "',`isShow`='" + dt_menu.Rows[i]["isshow"].ToString() + "' WHERE `menuId`='" + dt_menu.Rows[i]["menuid"].ToString() + "'";
                     db.queny(s1);
@@ -120,7 +116,6 @@ namespace Login
                     Boolean chk = false;
                     for(int t=0;t<mid.Count;t++){
                         if(dt_dbmenu.Rows[i]["menuid"].ToString().Equals(mid[t])){
-                            MessageBox.Show("HI");
                             chk = true;
                             
                         }
@@ -129,10 +124,11 @@ namespace Login
                     {
                         String s1 = "UPDATE `menu` SET `isShow`='N' WHERE `menuId`='" + dt_dbmenu.Rows[i]["menuid"].ToString() + "'";
                         db.queny(s1);
-                        MessageBox.Show(s1);
                     }
+                    MessageBox.Show("Menu Updated!");
                 }
                 db.changeDate(DateTime.Today.ToShortDateString());
+
             }
             
         }

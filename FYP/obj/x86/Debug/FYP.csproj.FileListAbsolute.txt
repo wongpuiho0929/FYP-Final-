@@ -115,7 +115,6 @@ C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.pdb
 C:\Users\wongp\Desktop\FYP-Final-\FYP\bin\Debug\FYP.exe
 C:\Users\wongp\Desktop\FYP-Final-\FYP\bin\Debug\FYP.pdb
 C:\Users\wongp\Desktop\FYP-Final-\FYP\bin\Debug\MySql.Data.dll
-C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.addFood.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.addMenuType.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.AddValue.resources
@@ -136,9 +135,10 @@ C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.OldDataToDB.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.OpenChangeMenu.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.Properties.Resources.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.Refund.resources
-C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.Report.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.SetTime.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.SplashScreen.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.Staff.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.viewOrderDetail.resources
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.csproj.GenerateResource.Cache
+C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.GroupCountView.resources
+C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.Reprint.resources

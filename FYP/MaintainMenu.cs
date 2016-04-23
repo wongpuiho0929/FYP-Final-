@@ -185,6 +185,7 @@ namespace Login
         {
             TrueFalse(true);
             DGW_show.Enabled = false;
+            btn_add.Enabled = false;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -192,6 +193,8 @@ namespace Login
             SaveChanging();
             TrueFalse(false);
             DGW_show.Enabled = true;
+            btn_add.Enabled = true;
+            btn_maintain.Enabled = true;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -200,6 +203,8 @@ namespace Login
             addFood();
             TrueFalse(true);
             DGW_show.Enabled = false;
+            btn_maintain.Enabled = false;
+            
         }
 
         private void TrueFalse(Boolean s) {
@@ -315,6 +320,8 @@ namespace Login
             TrueFalse(false);
             DGW_show.Enabled = true;
             foodAddChick = false;
+            btn_add.Enabled = true;
+            btn_maintain.Enabled = true;
         }
 
         

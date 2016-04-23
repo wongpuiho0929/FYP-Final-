@@ -63,7 +63,7 @@ namespace Login
         private void rBtn_Student_CheckedChanged(object sender, EventArgs e)
         {
             DGV_Show.Dock = DockStyle.Top;
-            DataTable dt_Student = db.getDb("student");
+            DataTable dt_Student = db.query("Select stuId, name ,balance, email , status , createAt from student");
             DGV_Show.DataSource = dt_Student;
             grpbox_Staff.Visible = false;
             grpbox_Student.Visible = true;
@@ -205,7 +205,7 @@ namespace Login
         private void filldataStaff(DataGridView dt) {
             btn_back.Visible = true;
             txt_userName.Text = dt.SelectedRows[0].Cells["userName"].Value.ToString();
-            txt_password.Text = dt.SelectedRows[0].Cells["password"].Value.ToString();
+            
             combo_position.SelectedItem = dt.SelectedRows[0].Cells["position"].Value.ToString();
             txt_staffName.Text = dt.SelectedRows[0].Cells["name"].Value.ToString();
         }
@@ -239,6 +239,8 @@ namespace Login
             }
             btn_back.Visible = false;
         }
+
+
         
     }
 }

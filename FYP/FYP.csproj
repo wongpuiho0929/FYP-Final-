@@ -117,11 +117,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupCountView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupCountView.Designer.cs">
+      <DependentUpon>GroupCountView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kitchenView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kitchenView.designer.cs">
+      <DependentUpon>kitchenView.cs</DependentUpon>
+    </Compile>
     <Compile Include="OldDataToDB.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OldDataToDB.Designer.cs">
       <DependentUpon>OldDataToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reprint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reprint.Designer.cs">
+      <DependentUpon>Reprint.cs</DependentUpon>
     </Compile>
     <Compile Include="SetTime.cs">
       <SubType>Form</SubType>
@@ -134,12 +152,6 @@
     </Compile>
     <Compile Include="GenXlsx.Designer.cs">
       <DependentUpon>GenXlsx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="kitchenView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="kitchenView.Designer.cs">
-      <DependentUpon>kitchenView.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -198,12 +210,6 @@
     <Compile Include="Refund.Designer.cs">
       <DependentUpon>Refund.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Report.Designer.cs">
-      <DependentUpon>Report.cs</DependentUpon>
-    </Compile>
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenXlsx.resx">
       <DependentUpon>GenXlsx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupCountView.resx">
+      <DependentUpon>GroupCountView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="kitchenView.resx">
       <DependentUpon>kitchenView.cs</DependentUpon>
@@ -289,8 +298,8 @@
     <EmbeddedResource Include="Refund.resx">
       <DependentUpon>Refund.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report.resx">
-      <DependentUpon>Report.cs</DependentUpon>
+    <EmbeddedResource Include="Reprint.resx">
+      <DependentUpon>Reprint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetTime.resx">
       <DependentUpon>SetTime.cs</DependentUpon>

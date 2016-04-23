@@ -22,6 +22,30 @@ namespace Login
             System.IO.File.WriteAllLines(@"1.txt", lines);
 
         }
+
+        public DataTable getCountAllFood(String cmdText)
+        {
+            MySqlCommand command = cnn.CreateCommand();
+            cnn.Open();
+
+            MySqlCommand cmd = new MySqlCommand(cmdText, cnn);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmdText, cnn);
+            DataTable db = new DataTable();
+            da.Fill(db);
+            cnn.Close();
+            return db;
+        }
+
+        public void update(String oid)
+        {
+
+            MySqlCommand command = cnn.CreateCommand();
+            cnn.Open();
+            String cmdText = "update orders set status='ready' where orderDate=CURDATE() and orderId='" + oid + "'";
+            MySqlCommand cmd = new MySqlCommand(cmdText, cnn);
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+        }
         public void changeDate(String d) {
             try
             {

@@ -198,6 +198,11 @@ namespace Login
             }
             else
             {
+                if (flowLayoutPanel1.BackgroundImage == null)
+                {
+                    MessageBox.Show("Please input a picture");
+                    return;
+                }
                 using (WebClient client = new WebClient())
                 {
                     client.Headers.Add("Content-Type", "application/octet-stream");
@@ -207,8 +212,6 @@ namespace Login
                    
                 }
                 button1.Text = "Change";
-                flowLayoutPanel1.Visible = false;
-                pictureBox1.Visible = true;
                 main.Show();
                 m_v2.Show();
             }
@@ -254,6 +257,8 @@ namespace Login
             }
 
             main.db.queny(s);
+            MessageBox.Show(s.Split(' ')[0] +"is successful");
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -271,6 +276,12 @@ namespace Login
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void addFood_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            main.Show();
+            m_v2.Show();
         }
         /*-------------------------------------------------------------------------------------*/
 

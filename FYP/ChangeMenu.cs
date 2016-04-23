@@ -90,6 +90,8 @@ namespace Login
             try
             {
                 System.IO.File.Replace(s, s1,"a");
+                MessageBox.Show("Save");
+                ChangeMenu_Load(sender, e);
             }
             catch (Exception) {
                 

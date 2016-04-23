@@ -30,13 +30,12 @@
         {
             this.gb1 = new System.Windows.Forms.GroupBox();
             this.gb_OrderStatus = new System.Windows.Forms.GroupBox();
+            this.btn_print = new System.Windows.Forms.Button();
             this.gbFunction = new System.Windows.Forms.GroupBox();
             this.gb_foobType = new System.Windows.Forms.GroupBox();
             this.gb_Information = new System.Windows.Forms.GroupBox();
             this.lbl_tov = new System.Windows.Forms.Label();
             this.FLP1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.rb_group = new System.Windows.Forms.RadioButton();
-            this.rb_normal = new System.Windows.Forms.RadioButton();
             this.FLP2 = new System.Windows.Forms.FlowLayoutPanel();
             this.gb1.SuspendLayout();
             this.gb_OrderStatus.SuspendLayout();
@@ -59,14 +58,23 @@
             // 
             // gb_OrderStatus
             // 
-            this.gb_OrderStatus.Controls.Add(this.rb_normal);
-            this.gb_OrderStatus.Controls.Add(this.rb_group);
+            this.gb_OrderStatus.Controls.Add(this.btn_print);
             this.gb_OrderStatus.Location = new System.Drawing.Point(7, 528);
             this.gb_OrderStatus.Name = "gb_OrderStatus";
             this.gb_OrderStatus.Size = new System.Drawing.Size(200, 100);
             this.gb_OrderStatus.TabIndex = 5;
             this.gb_OrderStatus.TabStop = false;
-            this.gb_OrderStatus.Text = "SHOW TYPE";
+            this.gb_OrderStatus.Text = "Print";
+            // 
+            // btn_print
+            // 
+            this.btn_print.Location = new System.Drawing.Point(4, 13);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(143, 81);
+            this.btn_print.TabIndex = 0;
+            this.btn_print.Text = "Print";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
             // 
             // gbFunction
             // 
@@ -115,30 +123,6 @@
             this.FLP1.Size = new System.Drawing.Size(735, 489);
             this.FLP1.TabIndex = 2;
             // 
-            // rb_group
-            // 
-            this.rb_group.AutoSize = true;
-            this.rb_group.Location = new System.Drawing.Point(6, 43);
-            this.rb_group.Name = "rb_group";
-            this.rb_group.Size = new System.Drawing.Size(54, 17);
-            this.rb_group.TabIndex = 0;
-            this.rb_group.Text = "Group";
-            this.rb_group.UseVisualStyleBackColor = true;
-            this.rb_group.CheckedChanged += new System.EventHandler(this.rb_group_CheckedChanged);
-            // 
-            // rb_normal
-            // 
-            this.rb_normal.AutoSize = true;
-            this.rb_normal.Checked = true;
-            this.rb_normal.Location = new System.Drawing.Point(6, 20);
-            this.rb_normal.Name = "rb_normal";
-            this.rb_normal.Size = new System.Drawing.Size(58, 17);
-            this.rb_normal.TabIndex = 0;
-            this.rb_normal.TabStop = true;
-            this.rb_normal.Text = "Noraml";
-            this.rb_normal.UseVisualStyleBackColor = true;
-            this.rb_normal.CheckedChanged += new System.EventHandler(this.rb_normal_CheckedChanged);
-            // 
             // FLP2
             // 
             this.FLP2.AutoScroll = true;
@@ -163,7 +147,6 @@
             this.Load += new System.EventHandler(this.kitchenView_Load);
             this.gb1.ResumeLayout(false);
             this.gb_OrderStatus.ResumeLayout(false);
-            this.gb_OrderStatus.PerformLayout();
             this.gb_Information.ResumeLayout(false);
             this.gb_Information.PerformLayout();
             this.FLP1.ResumeLayout(false);
@@ -180,8 +163,7 @@
         private System.Windows.Forms.GroupBox gb_foobType;
         private System.Windows.Forms.GroupBox gb_OrderStatus;
         private System.Windows.Forms.GroupBox gbFunction;
-        private System.Windows.Forms.RadioButton rb_normal;
-        private System.Windows.Forms.RadioButton rb_group;
         private System.Windows.Forms.FlowLayoutPanel FLP2;
+        private System.Windows.Forms.Button btn_print;
     }
 }

@@ -35,8 +35,6 @@
             this.chk_Y = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_FoodType = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lab_Search = new System.Windows.Forms.Label();
             this.btn_cancelFood = new System.Windows.Forms.Button();
             this.txt_imgName = new System.Windows.Forms.TextBox();
@@ -108,8 +106,6 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.AliceBlue;
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.lab_Search);
             // 
             // splitContainer1.Panel2
@@ -189,11 +185,11 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.btn_FoodType);
             this.groupBox1.Font = new System.Drawing.Font("Comic Sans MS", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(9, 140);
+            this.groupBox1.Location = new System.Drawing.Point(9, 34);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(243, 250);
+            this.groupBox1.Size = new System.Drawing.Size(243, 356);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Food Type:";
@@ -203,7 +199,7 @@
             this.btn_FoodType.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_FoodType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_FoodType.Font = new System.Drawing.Font("Comic Sans MS", 10F);
-            this.btn_FoodType.Location = new System.Drawing.Point(3, 212);
+            this.btn_FoodType.Location = new System.Drawing.Point(3, 318);
             this.btn_FoodType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_FoodType.Name = "btn_FoodType";
             this.btn_FoodType.Size = new System.Drawing.Size(237, 36);
@@ -211,24 +207,6 @@
             this.btn_FoodType.Text = "Add Type";
             this.btn_FoodType.UseVisualStyleBackColor = true;
             this.btn_FoodType.Click += new System.EventHandler(this.btn_FoodType_Click_1);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(11, 72);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(231, 30);
-            this.textBox1.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 10F);
-            this.label1.Location = new System.Drawing.Point(5, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Food Name:";
             // 
             // lab_Search
             // 
@@ -587,8 +565,6 @@
         private System.Windows.Forms.CheckBox chk_Y;
         public System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_FoodType;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lab_Search;
         private System.Windows.Forms.Button btn_cancelFood;
         private System.Windows.Forms.TextBox txt_imgName;
