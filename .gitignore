@@ -226,3 +226,4 @@ pip-log.txt
 *.cache
 FYP/obj/x86/Debug/
 *.exe
+FYP/obj/x86/
