@@ -191,6 +191,19 @@ namespace Login
                cnn.Close();
                return db;
            }
+          public DataTable removeLabel()
+           {
+               MySqlCommand command = cnn.CreateCommand();
+               cnn.Open();
+               String cmdText = "SELECT * FROM orders o where O.orderDate=CURDATE() AND o.status != 'processing'  Order by o.oTakeTime";
+               MySqlCommand cmd = new MySqlCommand(cmdText, cnn);
+               MySqlDataAdapter da = new MySqlDataAdapter(cmdText, cnn);
+               DataTable db = new DataTable();
+               da.Fill(db);
+               cnn.Close();
+               return db;
+           }
+
 
             public DataTable printGrp(String time)
            {
