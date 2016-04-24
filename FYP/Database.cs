@@ -18,7 +18,7 @@ namespace Login
 		public String date;
 
         public void changeConnection(String s,String u,String p,String d) {
-            string[] lines = { "server = "+s, "database = fyp_db", "uid = "+u,"password = "+p ,"currentday ="+d};
+            string[] lines = { "server ="+s, "database =fyp_db", "uid ="+u,"password ="+p ,"currentday ="+d};
             System.IO.File.WriteAllLines(@"1.txt", lines);
 
         }

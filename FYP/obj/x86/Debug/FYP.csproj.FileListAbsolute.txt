@@ -142,3 +142,4 @@ C:\Users\wongp\Desktop\FYP-Final-\FYP\bin\Debug\FYP.pdb
 C:\Users\wongp\Desktop\FYP-Final-\FYP\bin\Debug\MySql.Data.dll
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.exe
 C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.pdb
+C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache

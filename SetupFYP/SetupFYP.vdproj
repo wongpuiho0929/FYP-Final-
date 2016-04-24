@@ -27,20 +27,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E9BF6E13CC9B99D806EAE3921A8FC284"
+        "MsmKey" = "8:_E8F8C0024BCF45D726D304FA84DADC5A"
         "OwnerKey" = "8:_04EC5565C35A41F98BD9987F54807A1B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E9BF6E13CC9B99D806EAE3921A8FC284"
+        "OwnerKey" = "8:_04EC5565C35A41F98BD9987F54807A1B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_04EC5565C35A41F98BD9987F54807A1B"
+        "OwnerKey" = "8:_E8F8C0024BCF45D726D304FA84DADC5A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -61,6 +61,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -77,6 +85,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -126,14 +142,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E9BF6E13CC9B99D806EAE3921A8FC284"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E8F8C0024BCF45D726D304FA84DADC5A"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.6.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E9BF6E13CC9B99D806EAE3921A8FC284"
+                    "_E8F8C0024BCF45D726D304FA84DADC5A"
                     {
                     "Name" = "8:MySql.Data.dll"
                     "Attributes" = "3:512"
