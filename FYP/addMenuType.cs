@@ -29,7 +29,9 @@ namespace Login
             dt_menuCategory = main.db.getDb("menucategory");
         }
         public addMenuType(Main main,MaintainMenu_v2 m_v2)
+            
         {
+            
             InitializeComponent();
             this.main = main;
             this.m_v2 = m_v2;
@@ -101,6 +103,9 @@ namespace Login
 
             }
             //-------------tab2-------------------------------------//
+            if (dt != null) {
+                button2.Visible = true;
+            }
             int intialTop = 60;
             DataTable dt_menufood = main.db.query("Select foodtype.name ,menufood.many from menufood , foodtype where menufood.ftypeid = foodtype.ftypeid and menuid = '"+txt_id.Text+"'");
 
@@ -117,6 +122,7 @@ namespace Login
                 s.Text = dt_menufood.Rows[i]["name"].ToString();
                 num.Minimum = 1;
                 num.Maximum = 10;
+                num.Value = Decimal.Parse(dt_menufood.Rows[i]["many"].ToString());
                 tabControl1.TabPages[1].Controls.Add(s);
                 tabControl1.TabPages[1].Controls.Add(num);
                 labels.Add(s);
@@ -277,6 +283,38 @@ namespace Login
         {
             main.Show();
             m_v2.Show();
+        }
+
+        private void btn_SaveChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt_FoodType = main.db.getDb("FoodType");
+                String s1 = "DELETE FROM `menufood` WHERE menuId = '" + txt_id.Text + "'";
+                main.db.queny(s1);
+                for (int i = 0; i < labels.Count; i++)
+                {
+                    String FTName = labels[i].Text.ToString();
+                    String FTID = "";
+                    for (int k = 0; k < dt_FoodType.Rows.Count; k++)
+                    {
+                        if (FTName.Equals(dt_FoodType.Rows[k]["name"].ToString()))
+                        {
+                            FTID = dt_FoodType.Rows[k]["fTypeId"].ToString();
+                        }
+                    }
+                    int numOfItems = Convert.ToInt32(nums[i].Value.ToString());
+
+                    String s2 = "INSERT INTO `menuFood` (`menuId`, `fTypeId`, `many`) VALUES ('" + txt_id.Text + "', '" + FTID + "'," + numOfItems + ")";
+                    main.db.queny(s2);
+                }
+                MessageBox.Show("Successful");
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please check your data");
+            }
         }
 
        

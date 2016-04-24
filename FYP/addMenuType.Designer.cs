@@ -55,6 +55,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_Back = new System.Windows.Forms.Button();
             this.lab_History = new System.Windows.Forms.Label();
+            this.btn_SaveChange = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -116,6 +117,7 @@
             this.button2.TabIndex = 75;
             this.button2.Text = "Food";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox1
@@ -333,6 +335,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_SaveChange);
             this.tabPage2.Controls.Add(this.btn_Back);
             this.tabPage2.Controls.Add(this.lab_History);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -350,7 +353,7 @@
             this.btn_Back.Location = new System.Drawing.Point(550, 10);
             this.btn_Back.Name = "btn_Back";
             this.btn_Back.Size = new System.Drawing.Size(120, 36);
-            this.btn_Back.TabIndex = 5;
+            this.btn_Back.TabIndex = 1;
             this.btn_Back.Text = "Back";
             this.btn_Back.UseVisualStyleBackColor = true;
             this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
@@ -364,6 +367,19 @@
             this.lab_History.Size = new System.Drawing.Size(50, 24);
             this.lab_History.TabIndex = 3;
             this.lab_History.Text = "Food";
+            // 
+            // btn_SaveChange
+            // 
+            this.btn_SaveChange.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_SaveChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_SaveChange.Font = new System.Drawing.Font("Comic Sans MS", 13.8F);
+            this.btn_SaveChange.Location = new System.Drawing.Point(3, 494);
+            this.btn_SaveChange.Name = "btn_SaveChange";
+            this.btn_SaveChange.Size = new System.Drawing.Size(674, 52);
+            this.btn_SaveChange.TabIndex = 4;
+            this.btn_SaveChange.Text = "Save Change";
+            this.btn_SaveChange.UseVisualStyleBackColor = true;
+            this.btn_SaveChange.Click += new System.EventHandler(this.btn_SaveChange_Click);
             // 
             // addMenuType
             // 
@@ -416,6 +432,7 @@
         private System.Windows.Forms.Button btn_Back;
         private System.Windows.Forms.Label lab_History;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_SaveChange;
 
 
     }

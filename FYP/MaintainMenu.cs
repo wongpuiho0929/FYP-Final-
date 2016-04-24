@@ -19,6 +19,7 @@ namespace Login
         public  String sql="(";
         private Boolean chick = false;
         private Boolean foodAddChick = false;
+        public Button foodTypeBtn;
 
 
         public MaintainMenu(Main main)
@@ -34,7 +35,7 @@ namespace Login
         {
             chkbox = db.getDb("Foodtype");
             DataTable dt_food = db.getDb("Food");
-            
+            foodTypeBtn = btn_FoodType;
 
             int intialTop = 20;
             combo_foodType.Items.Clear();

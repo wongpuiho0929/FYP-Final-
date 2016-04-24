@@ -58,6 +58,9 @@ namespace Login
             }
             grpbox_Staff.Visible = false;
             grpbox_Student.Visible = false;
+            btn_back.Visible = false;
+            button1.Visible = false;
+            button2.Visible = false;
         }
 
         private void rBtn_Student_CheckedChanged(object sender, EventArgs e)
@@ -67,17 +70,22 @@ namespace Login
             DGV_Show.DataSource = dt_Student;
             grpbox_Staff.Visible = false;
             grpbox_Student.Visible = true;
+            btn_back.Visible = false;
+            button1.Visible = false;
+            button2.Visible = false;
          
         }
 
         private void rBtn_Staff_CheckedChanged(object sender, EventArgs e)
         {
             DGV_Show.Dock = DockStyle.Top;
-            DataTable dt_Staff = db.getDb("Staff");
+            DataTable dt_Staff = db.getDb("Select username ,name, position  from Staff");
             DGV_Show.DataSource = dt_Staff;
             grpbox_Staff.Visible = true;
             grpbox_Student.Visible = false;
-
+            btn_back.Visible = false;
+            button1.Visible = false;
+            button2.Visible = false;
         }
 
         private void btn_AddStaff_Click(object sender, EventArgs e)

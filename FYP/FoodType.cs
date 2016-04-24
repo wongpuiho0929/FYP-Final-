@@ -98,6 +98,8 @@ namespace Login
                 menu.sql = "";
                 menu.combo_foodType.Items.Clear();
                 menu.groupBox1.Controls.Clear();
+                menu.groupBox1.Controls.Add(menu.foodTypeBtn);
+                menu.foodTypeBtn.Dock = DockStyle.Bottom;
                 menu.MaintainMenu_Load(sender, e);
             }
         }

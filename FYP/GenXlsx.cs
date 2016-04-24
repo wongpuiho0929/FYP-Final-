@@ -322,6 +322,10 @@ namespace Login
     {
         
         String s = "";
+        if (chkList_Menu.CheckedItems.Count == 0) {
+            MessageBox.Show("Please check!");
+            return;
+        }
         for (int i = 0; i < chkList_Menu.CheckedItems.Count;i++ )
         {
             String a = chkList_Menu.CheckedItems[i].ToString();
