@@ -33,8 +33,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.combo_Start = new System.Windows.Forms.ComboBox();
             this.combo_End = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lab_Quota = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -89,16 +89,6 @@
             this.combo_End.Size = new System.Drawing.Size(174, 32);
             this.combo_End.TabIndex = 5;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Comic Sans MS", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(171, 171);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(174, 32);
-            this.comboBox1.TabIndex = 7;
-            // 
             // lab_Quota
             // 
             this.lab_Quota.AutoSize = true;
@@ -109,12 +99,20 @@
             this.lab_Quota.TabIndex = 6;
             this.lab_Quota.Text = "Quota:";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(171, 173);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(174, 25);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // SetTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 340);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lab_Quota);
             this.Controls.Add(this.combo_End);
             this.Controls.Add(this.combo_Start);
@@ -138,7 +136,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox combo_Start;
         private System.Windows.Forms.ComboBox combo_End;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lab_Quota;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

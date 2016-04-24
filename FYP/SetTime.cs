@@ -34,12 +34,7 @@ namespace Login
                 combo_Start.Items.Add(s.ToShortTimeString());
                 s = s.AddMinutes(30);
             }
-            int qutoa = 10;
-            for (int i = 0; i < 10; i++)
-            {
-                comboBox1.Items.Add(qutoa.ToString());
-                qutoa += 10;
-            }          
+           
         }
 
        
@@ -50,7 +45,7 @@ namespace Login
             startTime = DateTime.Parse(main.getTimefromjson("http://" + main.db.id + "/fyp_php/pc/start.php"));
             endTime = DateTime.Parse(main.getTimefromjson("http://" + main.db.id + "/fyp_php/pc/end.php"));
             quota = main.getTimefromjson("http://"+main.db.id + "/fyp_php/pc/quota.php");
-            comboBox1.SelectedItem = quota;
+            textBox1.Text = quota;
             combo_Start.SelectedItem = startTime.ToShortTimeString();
             combo_End.SelectedItem = endTime.ToShortTimeString();
         }
@@ -81,7 +76,7 @@ namespace Login
             settimetojson(param, "http://" + main.db.id + "/fyp_php/pc/start.php");
             param = "action=set&value=" + combo_End.SelectedItem;
             settimetojson(param, "http://" + main.db.id + "/fyp_php/pc/end.php");
-            param = "action=set&value=" + comboBox1.SelectedItem;
+            param = "action=set&value=" + textBox1.Text;
             settimetojson(param, "http://" + main.db.id + "/fyp_php/pc/quota.php");
             this.Close();
         }
@@ -120,7 +115,7 @@ namespace Login
             if (startTime.ToShortTimeString().Equals(combo_Start.SelectedItem.ToString()))
             {
                 if (endTime.ToShortTimeString().Equals(combo_End.SelectedItem.ToString())) {
-                    if (quota.Equals(comboBox1.SelectedItem.ToString())) {
+                    if (quota.Equals(textBox1.Text.ToString())||textBox1.Text =="") {
                         CHAGE = false;
                     }
                 }
@@ -132,6 +127,23 @@ namespace Login
                 main.Main_Load(sender, e);
             }
             
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            int temp;
+            if (textBox1.Text == "") {
+                return;
+            }
+            if (!Int32.TryParse(textBox1.Text, out temp)) {
+                MessageBox.Show("Please Input an integer.");
+                textBox1.Text = "";
+            }
+            if (temp < 1 || temp > 999)
+            {
+                MessageBox.Show("Range in 1 to 999");
+                textBox1.Text = "";
+            }
         }
 
         
