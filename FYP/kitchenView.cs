@@ -30,6 +30,7 @@ namespace Login
         private CheckBoxEx[] time;
         private List<Label> labelList;
         private List<String> oidList;
+        private CheckBoxEx[] typelist;
         private List<Label> templabelList;
         private int x = 0;
         private System.Windows.Forms.Button printButton;
@@ -57,6 +58,7 @@ namespace Login
             this.gb1.Location = new Point(screenWidth - 200, 10);
             this.gb1.Width = 400;
             this.gb1.Height = screenHeight;
+            
             db = new Database();
             db.Connection();
             labelList = new List<Label>();
@@ -288,12 +290,15 @@ namespace Login
         private void addGBFoodType()
         {
             ov.setDt("foodType");
+
             DataTable dt = ov.getDt();
+            typelist = new CheckBoxEx[dt.Rows.Count];
             int high = 15;
             this.gb_foobType.Height = 35 * dt.Rows.Count;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 CheckBoxEx cb = new CheckBoxEx();
+                
                 cb.Location = new Point(10, high);
                 high += 30;
                 cb.ClientSize = new Size(30, 30);
@@ -303,6 +308,7 @@ namespace Login
                 cb.Tag = dt.Rows[i]["fTypeId"].ToString();
                 gb_foobType.Controls.Add(cb);
                 cb.CheckedChanged += new EventHandler(CheckBox1_CheckedChanged);
+                typelist[i] = cb;
             } 
         }
         
@@ -638,6 +644,7 @@ namespace Login
                 String nowTime = DateTime.Now.ToString("HH-mm-ss");
                 String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
                 List<CheckBoxEx> lcb = new List<CheckBoxEx>();
+                List<CheckBoxEx> tcb = new List<CheckBoxEx>();
                 int printcount = 0;
                 for (int i = 0; i < time.Length; i++)
                 {
@@ -645,10 +652,32 @@ namespace Login
                     if (cb.Checked == true)
                         lcb.Add(cb);
                 }
-
+                for (int i = 0; i < typelist.Length; i++)
+                {
+                    CheckBoxEx cb = typelist[i];
+                    if (cb.Checked == true)
+                        tcb.Add(cb);
+                }
                 foreach (CheckBoxEx cb in lcb)
                 {
-                    DataTable dt = db.printGrp(cb.Text + ":00");
+                    String time = cb.Text + ":00";
+                    String cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId AND O.oTakeTime='" + time + "' and o.status = 'processing'";
+
+                    if (tcb.Count > 0)
+                    {
+                        cmdText += "AND F.fTypeId IN (";
+                        for (int i = 0; i < tcb.Count; i++)
+                        {
+                            if (i != 0)
+                            {
+                                cmdText += ",";
+                            }
+                            cmdText += "'" + tcb[i].Tag + "'";
+                        }
+                        cmdText += ")";
+                    }
+                    cmdText += "GROUP BY F.shortName";
+                    DataTable dt = db.printGrp(cmdText);
                     for (int j = 0; j < dt.Rows.Count; j++)
                     {
                         printcount++;

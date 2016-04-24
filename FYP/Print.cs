@@ -13,7 +13,6 @@ namespace Login
     {
         private StreamReader streamToPrint;
         private Font printFont;
-
         public void print(String fileName)
         {
             DateTime today = DateTime.Today;

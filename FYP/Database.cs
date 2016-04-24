@@ -205,7 +205,7 @@ namespace Login
            }
 
 
-            public DataTable printGrp(String time)
+            /*public DataTable printGrp(String time)
            {
                MySqlCommand command = cnn.CreateCommand();
                cnn.Open();
@@ -216,7 +216,18 @@ namespace Login
                da.Fill(db);
                cnn.Close();
                return db;
-           }
+           }*/
+          public DataTable printGrp(String cmdText)
+          {
+              MySqlCommand command = cnn.CreateCommand();
+              cnn.Open();
+              MySqlCommand cmd = new MySqlCommand(cmdText, cnn);
+              MySqlDataAdapter da = new MySqlDataAdapter(cmdText, cnn);
+              DataTable db = new DataTable();
+              da.Fill(db);
+              cnn.Close();
+              return db;
+          }
            public void queny(String sql)
            {
 

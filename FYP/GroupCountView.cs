@@ -68,7 +68,7 @@ namespace Login
         }
         private String sqlControl()
         {
-            String cmdText = "SELECT food.name, count(*) as count from orders , orderfood , food ,foodtype where orderfood.orderid = orders.orderid and orderfood.orderDate = orders.orderDate and orderfood.foodid = food.foodid and orders.status = 'processing' and orderfood.orderdate = CURDATE() and foodtype.fTypeId=food.fTypeId ";
+            String cmdText = "SELECT food.shortname as name, count(*) as count from orders , orderfood , food ,foodtype where orderfood.orderid = orders.orderid and orderfood.orderDate = orders.orderDate and orderfood.foodid = food.foodid and orders.status = 'processing' and orderfood.orderdate = CURDATE() and foodtype.fTypeId=food.fTypeId ";
             String s = "";
             Boolean check = false;
             for (int i = 0; i < time.Length; i++)
@@ -143,11 +143,34 @@ namespace Login
                 lb.Font = new System.Drawing.Font("Microsoft JhengHei", 15, System.Drawing.FontStyle.Bold);
 
                 lb.Text += dt.Rows[i]["name"].ToString();
-                lb.Text += "\n" + dt.Rows[i]["count"].ToString();
+                lb.Text += "\rQty:" + dt.Rows[i]["count"].ToString();
                 FLP2.Controls.Add(lb);
-                lb.Click += new EventHandler(PrintMessage_click);
+                lb.Click += new EventHandler(PrintGrpMessage_click);
             }
 
+        }
+        private void PrintGrpMessage_click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to print these time group order?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Print print = new Print();
+                Label lb = (Label)sender;
+                String s = "Asia Pacific";
+                s += "\r" + lb.Text;
+                String[] context = s.Split('\r');
+                if (!Directory.Exists(@"C:\\My Documents\\" + todayString + "\\"))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
+                }
+                String path = @"C:\\My Documents\\" + todayString + "\\grptemp.txt";
+                System.IO.File.WriteAllLines(path, context);
+                print.print("grptemp.txt");
+            }
+            else
+            {
+                MessageBox.Show("Printing is Canelled");
+            }
         }
         private void PrintMessage_click(object sender, EventArgs e)
         {
@@ -158,6 +181,7 @@ namespace Login
                 String nowTime = DateTime.Now.ToString("HH-mm-ss");
                 String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
                 List<CheckBoxEx> lcb = new List<CheckBoxEx>();
+                List<CheckBoxEx> tcb = new List<CheckBoxEx>();
                 int printcount = 0;
                 for (int i = 0; i < time.Length; i++)
                 {
@@ -165,10 +189,31 @@ namespace Login
                     if (cb.Checked == true)
                         lcb.Add(cb);
                 }
-                
+                for (int i = 0; i < typelist.Length; i++)
+                {
+                    CheckBoxEx cb = typelist[i];
+                    if (cb.Checked == true)
+                        tcb.Add(cb);
+                }
                 foreach (CheckBoxEx cb in lcb)
                 {
-                    DataTable dt = db.printGrp(cb.Text+":00");
+                    String time = cb.Text+":00";
+                    String cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId AND O.oTakeTime='"+time+"' and o.status = 'processing'";
+                    
+                    if(tcb.Count>0){
+                        cmdText += "AND F.fTypeId IN (";
+                        for (int i = 0; i < tcb.Count; i++)
+                        {
+                            if (i != 0)
+                            {
+                                cmdText += ",";
+                            }
+                            cmdText += "'" + tcb[i].Tag + "'";
+                        }
+                            cmdText += ")";
+                    }
+                    cmdText += "GROUP BY o.orderid";
+                    DataTable dt = db.printGrp(cmdText);
                     for (int j = 0; j < dt.Rows.Count; j++)
                     {
                         printcount++;
@@ -265,6 +310,8 @@ namespace Login
                 gb_time.Controls.Add(cb);
 
             }
+            btn_GrpPrint.Location = new Point(120, 15);
+            btn_GrpPrint.ClientSize = new Size(70, 100);
         }
 
       public String getTimefromjson(String url)
@@ -297,6 +344,8 @@ namespace Login
         {
             CountView();
         }
+
+        
 
         /*private void CountView()
         {
