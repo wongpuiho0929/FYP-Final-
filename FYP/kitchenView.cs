@@ -22,6 +22,7 @@ namespace Login
         private int screenHeight = Screen.PrimaryScreen.Bounds.Height;
         private Reprint rp;
         private GroupCountView gcv;
+        private CheckBoxEx[] typelist;
         private Database db;
         private orderView ov;
         private ListBox lb;
@@ -33,8 +34,8 @@ namespace Login
         private List<Label> templabelList;
         private int x = 0;
         private System.Windows.Forms.Button printButton;
-       /* private Font printFont;
-        private StreamReader streamToPrint;*/
+        /* private Font printFont;
+         private StreamReader streamToPrint;*/
         private List<String> timeList = new List<string>();
         private List<String> typeList = new List<string>();
         public kitchenView(Login login)
@@ -61,7 +62,7 @@ namespace Login
             db.Connection();
             labelList = new List<Label>();
             oidList = new List<String>();
-            templabelList =new List<Label>();
+            templabelList = new List<Label>();
             //gcv = new GroupCountView(login);
             gb_width();
             ov = new orderView();
@@ -76,11 +77,11 @@ namespace Login
                 while (++x  > 0) ;
             });
             thread.Start();
-             System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+            System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
             t.Tick += new EventHandler(t_tick);
             t.Interval = 10000;
             t.Start();
-            
+
         }
         private void t_tick(object sender, EventArgs e)
         {
@@ -99,9 +100,9 @@ namespace Login
         {
             int y = 7;
             this.gb_Information.Location = new Point(y, 19);
-            this.gbFunction.Location = new Point(y, this.gb_Information.Location.Y+this.gb_Information.Height + 10);
-            this.gb_foobType.Location = new Point(y, this.gbFunction.Location.Y +this.gbFunction.Height+ 10);
-            this.gb_OrderStatus.Location = new Point(y, this.gb_foobType.Location.Y+this.gb_foobType.Height+ 10);
+            this.gbFunction.Location = new Point(y, this.gb_Information.Location.Y + this.gb_Information.Height + 10);
+            this.gb_foobType.Location = new Point(y, this.gbFunction.Location.Y + this.gbFunction.Height + 10);
+            this.gb_OrderStatus.Location = new Point(y, this.gb_foobType.Location.Y + this.gb_foobType.Height + 10);
         }
         private void ratify()
         {
@@ -141,7 +142,7 @@ namespace Login
         private void removeLabel()
         {
             DataTable dt = db.removeLabel();
-            for (int j=0;j<FLP1.Controls.Count;j++)
+            for (int j = 0; j < FLP1.Controls.Count; j++)
             {
                 Label lb = (Label)FLP1.Controls[j];
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -160,7 +161,7 @@ namespace Login
             {
                 FLP1.Controls.Clear();
             }*/
-           
+
             ov.setAllDt();
             DataTable AllDt = ov.getAllDt();
             oidList.Clear();
@@ -171,29 +172,31 @@ namespace Login
                 lb.Height = screenHeight / 3;
                 lb.Width = (screenWidth - 250) / 3;
                 lb.Name = AllDt.Rows[i]["orderid"].ToString();
-                
+
                 lb.BorderStyle = BorderStyle.FixedSingle;
                 lb.Font = new System.Drawing.Font("Microsoft JhengHei", 30, System.Drawing.FontStyle.Bold);
                 ov.setAllDt(lb.Name.ToString());
                 DataTable orderDetail = ov.getAllDt();
                 String s = "";
-                s += lb.Name.ToString()+"\r";
-                String[] tag = new String[orderDetail.Rows.Count+1];
+                s += lb.Name.ToString() + "\r";
+                String[] tag = new String[orderDetail.Rows.Count + 1];
                 for (int j = 0; j < orderDetail.Rows.Count; j++)
                 {
-                    s+=orderDetail.Rows[j]["shortname"]+"\r";
+                    s += orderDetail.Rows[j]["shortname"] + "\r";
                     tag[j] = orderDetail.Rows[j]["ftypeid"].ToString();
                 }
                 String nowTime = DateTime.Now.ToString("HH:mm");
                 int currentTime = timeChanger(nowTime);
                 String oldotaketime = AllDt.Rows[i]["otaketime"].ToString();
                 int otakeTime = timeChanger(oldotaketime);
-                
-                if (otakeTime-currentTime > 15) {
-                    lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF"); }
+
+                if (otakeTime - currentTime > 15)
+                {
+                    lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF");
+                }
                 else if (otakeTime - currentTime > 10) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFF00"); }
                 else { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000"); }
-                s += "Take Time:"+AllDt.Rows[i]["otaketime"];
+                s += "Take Time:" + AllDt.Rows[i]["otaketime"];
                 lb.Text = s;
                 tag[orderDetail.Rows.Count] = AllDt.Rows[i]["otaketime"].ToString().Substring(0, 5);
                 lb.Tag = tag;
@@ -203,11 +206,11 @@ namespace Login
                 oidList.Add(AllDt.Rows[i]["orderid"].ToString());
             }
 
-            
+
         }
         private int timeChanger(String time)
         {
-            int inttime=0;
+            int inttime = 0;
             String[] temp = time.Split(':');
             if (temp[1].Equals("00"))
             {
@@ -230,7 +233,7 @@ namespace Login
             gb_Information.Controls.Add(cb);
             cb.CheckedChanged += new EventHandler(CheckBox2_CheckedChanged);
             cb = new CheckBoxEx();
-            cb.Location = new Point(10, high+31);
+            cb.Location = new Point(10, high + 31);
             cb.ClientSize = new Size(30, 30);
             cb.Font = new System.Drawing.Font("Microsoft JhengHei", 12, System.Drawing.FontStyle.Bold);
             cb.Name = "cb_reprint";
@@ -242,15 +245,15 @@ namespace Login
         private void check_tick(Label lb)
         {
 
-            if (lb.BackColor.G==0) //Red
+            if (lb.BackColor.G == 0) //Red
             {
-                lb.BackColor = Color.FromArgb(155,0,0);
+                lb.BackColor = Color.FromArgb(155, 0, 0);
             }
-            if (lb.BackColor.G==255) //yellow
+            if (lb.BackColor.G == 255) //yellow
             {
                 lb.BackColor = Color.FromArgb(155, 255, 0);
             }
-            if(lb.BackColor.G==243) //blu
+            if (lb.BackColor.G == 243) //blu
             {
                 lb.BackColor = Color.FromArgb(107, 243, 255);
             }
@@ -288,36 +291,40 @@ namespace Login
         private void addGBFoodType()
         {
             ov.setDt("foodType");
+
             DataTable dt = ov.getDt();
+            typelist = new CheckBoxEx[dt.Rows.Count];
             int high = 15;
             this.gb_foobType.Height = 35 * dt.Rows.Count;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 CheckBoxEx cb = new CheckBoxEx();
+
                 cb.Location = new Point(10, high);
                 high += 30;
                 cb.ClientSize = new Size(30, 30);
                 cb.Font = new System.Drawing.Font("Microsoft JhengHei", 12, System.Drawing.FontStyle.Bold);
-                cb.Name = "cb_foodType_"+dt.Rows[i].ToString();
+                cb.Name = "cb_foodType_" + dt.Rows[i].ToString();
                 cb.Text = dt.Rows[i]["name"].ToString();
                 cb.Tag = dt.Rows[i]["fTypeId"].ToString();
                 gb_foobType.Controls.Add(cb);
                 cb.CheckedChanged += new EventHandler(CheckBox1_CheckedChanged);
-            } 
+                typelist[i] = cb;
+            }
         }
-        
+
         private void addTakeTime()
         {
-           DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/start.php"));
-           DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/end.php"));
-           
-            int startHour = startTime.Hour-1;
+            DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/start.php"));
+            DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/end.php"));
+
+            int startHour = startTime.Hour - 1;
             int endHour = endTime.Hour;
             int min = 0;
             int high = 15;
             double height = 30;
             int timeRange = (endHour - (startHour)) * 2;
-            this.gbFunction.Height = ((int)(height) * timeRange)+15;
+            this.gbFunction.Height = ((int)(height) * timeRange) + 15;
             time = new CheckBoxEx[timeRange];
             for (int i = 0; i < timeRange; i++)
             {
@@ -360,17 +367,17 @@ namespace Login
                 min = (min + 30) % 60;
                 cb.Name = "cb_TakeTime_" + i;
                 time[i] = cb;
-                
+
                 cb.CheckedChanged += new EventHandler(CheckBoxTime_CheckedChanged);
                 gbFunction.Controls.Add(cb);
-                
+
             }
             btn_TimeClear.Location = new Point(120, 15);
             btn_TimeClear.ClientSize = new Size(70, 100);
-            btn_quickPrint.Location = new Point(120,btn_quickPrint.Location.X + btn_print.ClientSize.Height);
+            btn_quickPrint.Location = new Point(120, btn_quickPrint.Location.X + btn_print.ClientSize.Height);
             btn_quickPrint.ClientSize = new Size(70, 150);
         }
-        
+
         public String getTimefromjson(String url)
         {
             byte[] bs = Encoding.ASCII.GetBytes("action=get");
@@ -404,27 +411,28 @@ namespace Login
         }
         private void CheckBox2_CheckedChanged(Object sender, EventArgs e)
         {
-            CheckBoxEx cb =(CheckBoxEx)sender;
-           
-                try {
-                    if (cb.Checked == true)
-                    {
-                        gcv.Show();
-                        
-                    }
-                    else
-                    {
-                        gcv.Hide();
-                    }
-                }
-                catch (Exception ex)
+            CheckBoxEx cb = (CheckBoxEx)sender;
+
+            try
+            {
+                if (cb.Checked == true)
                 {
-                    gcv = new GroupCountView(login);
                     gcv.Show();
-                    
+
                 }
-            
-            
+                else
+                {
+                    gcv.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                gcv = new GroupCountView(login);
+                gcv.Show();
+
+            }
+
+
         }
         private void CheckBox3_CheckedChanged(Object sender, EventArgs e)
         {
@@ -434,7 +442,7 @@ namespace Login
                 if (cb.Checked == true)
                 {
                     rp.Show();
-                    
+
                 }
                 else
                     rp.Hide();
@@ -443,7 +451,7 @@ namespace Login
             {
                 rp = new Reprint(this);
                 rp.Show();
-                
+
             }
 
             /*rp = new Reprint(this);
@@ -473,31 +481,31 @@ namespace Login
                     typeList.Add(cb.Tag.ToString());
                 }
             }
-           if (timeList.Count + typeList.Count > 1)
+            if (timeList.Count + typeList.Count > 1)
             {
                 checkType();
                 checkTime();
             }
-           if (typeList.Count > 0 && timeList.Count==0)
+            if (typeList.Count > 0 && timeList.Count == 0)
             {
                 checkType();
             }
-           if (timeList.Count > 0 && typeList.Count == 0)
+            if (timeList.Count > 0 && typeList.Count == 0)
             {
                 checkFullTime();
             }
-           if (timeList.Count == 0 && typeList.Count == 0)
-           {
-               foreach (Control c in FLP1.Controls)
-               {
-                   Label lb = (Label)c;
-                   lb.Show();
-               }
-           }
+            if (timeList.Count == 0 && typeList.Count == 0)
+            {
+                foreach (Control c in FLP1.Controls)
+                {
+                    Label lb = (Label)c;
+                    lb.Show();
+                }
+            }
         }
         private void checkType()
         {
-            
+
             typeList = new List<string>();
             foreach (Control c in gb_foobType.Controls)
             {
@@ -528,9 +536,9 @@ namespace Login
                 {
                     lb.Hide();
                 }
-                
+
             }
-            
+
         }
         private void checkTime()
         {
@@ -603,12 +611,12 @@ namespace Login
                     String counter = "(" + (i + 1) + "/" + labelList.Count.ToString() + ")";
                     Label lb = labelList[i];
                     String s = "Asia Pacific";
-                    s += "\r"+ lb.Text;
+                    s += "\r" + lb.Text;
                     s += "\r" + nowTime2;
                     s += "\r" + counter;
                     String[] OrderNo = (String[])lb.Tag;
                     String[] context = s.Split('\r');
-                    if (!Directory.Exists(@"C:\\My Documents\\"+todayString+"\\"))
+                    if (!Directory.Exists(@"C:\\My Documents\\" + todayString + "\\"))
                     {
                         DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
                     }
@@ -617,7 +625,7 @@ namespace Login
                     String filename = (context[1] + "_" + nowTime + "_(" + (i + 1) + "@" + labelList.Count.ToString() + ").txt");
                     print.print(filename);
                     db.update(context[1], nowTime2);
-                    for (int j = 0; j < FLP1.Controls.Count;j++ )
+                    for (int j = 0; j < FLP1.Controls.Count; j++)
                     {
                         Label Clb = (Label)FLP1.Controls[j];
                         if (Clb.Name.Equals(lb.Name))
@@ -634,8 +642,8 @@ namespace Login
             {
                 MessageBox.Show("Printing is Canelled");
             }
-            
-           
+
+
         }
 
         private void btn_TimeClear_Click(object sender, EventArgs e)
@@ -658,6 +666,7 @@ namespace Login
                 String nowTime = DateTime.Now.ToString("HH-mm-ss");
                 String nowTime2 = nowTime.Substring(0, 2) + ":" + nowTime.Substring(3, 2) + ":" + nowTime.Substring(6, 2);
                 List<CheckBoxEx> lcb = new List<CheckBoxEx>();
+                List<CheckBoxEx> tcb = new List<CheckBoxEx>();
                 int printcount = 0;
                 for (int i = 0; i < time.Length; i++)
                 {
@@ -665,10 +674,32 @@ namespace Login
                     if (cb.Checked == true)
                         lcb.Add(cb);
                 }
-
+                for (int i = 0; i < typelist.Length; i++)
+                {
+                    CheckBoxEx cb = typelist[i];
+                    if (cb.Checked == true)
+                        tcb.Add(cb);
+                }
                 foreach (CheckBoxEx cb in lcb)
                 {
-                    DataTable dt = db.printGrp(cb.Text + ":00");
+                    String time = cb.Text + ":00";
+                    String cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId AND O.oTakeTime='" + time + "' and o.status = 'processing'";
+
+                    if (tcb.Count > 0)
+                    {
+                        cmdText += "AND F.fTypeId IN (";
+                        for (int i = 0; i < tcb.Count; i++)
+                        {
+                            if (i != 0)
+                            {
+                                cmdText += ",";
+                            }
+                            cmdText += "'" + tcb[i].Tag + "'";
+                        }
+                        cmdText += ")";
+                    }
+                    cmdText += "GROUP BY F.shortName";
+                    DataTable dt = db.printGrp(cmdText);
                     for (int j = 0; j < dt.Rows.Count; j++)
                     {
                         printcount++;
@@ -770,7 +801,7 @@ namespace Login
                 ev.HasMorePages = false;
         }
         */
-        
+
     }
 }
 
