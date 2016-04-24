@@ -29,6 +29,8 @@ namespace Login
         private Thread thread;
         private CheckBoxEx[] time;
         private List<Label> labelList;
+        private List<String> oidList;
+        private List<Label> templabelList;
         private int x = 0;
         private System.Windows.Forms.Button printButton;
        /* private Font printFont;
@@ -43,6 +45,7 @@ namespace Login
 
         private void kitchenView_Load(object sender, EventArgs e)
         {
+            FLP1.Controls.Clear();
             today = DateTime.Today;
             todayString = today.ToString("dd-MM-yyyy");
             this.Width = screenWidth;
@@ -57,6 +60,8 @@ namespace Login
             db = new Database();
             db.Connection();
             labelList = new List<Label>();
+            oidList = new List<String>();
+            templabelList =new List<Label>();
             //gcv = new GroupCountView(login);
             gb_width();
             ov = new orderView();
@@ -64,7 +69,8 @@ namespace Login
             addGBFoodType();
             addTakeTime();
             gb_location();
-            orderView();
+            ratify();
+            //orderView();
             thread = new Thread(() =>
             {
                 while (++x  > 0) ;
@@ -78,7 +84,9 @@ namespace Login
         }
         private void t_tick(object sender, EventArgs e)
         {
-            orderView();
+            //orderView();
+            //control_tick();
+            ratify();
         }
         private void gb_width()
         {
@@ -95,17 +103,68 @@ namespace Login
             this.gb_foobType.Location = new Point(y, this.gbFunction.Location.Y +this.gbFunction.Height+ 10);
             this.gb_OrderStatus.Location = new Point(y, this.gb_foobType.Location.Y+this.gb_foobType.Height+ 10);
         }
-       
+        private void ratify()
+        {
+            orderView();
+            if (FLP1.Controls.Count == 0)
+            {
+                foreach (Label lb in templabelList)
+                {
+                    FLP1.Controls.Add(lb);
+                }
+            }
+            else if (FLP1.Controls.Count > 0)
+            {
+                for (int i = 0; i < oidList.Count; i++)
+                {
+                    Boolean b = false;
+                    //MessageBox.Show(FLP1.Controls[0].ToString());
+                    foreach (Control c in FLP1.Controls)
+                    {
+                        Label lb = (Label)c;
+                        if (lb.Name.Equals(oidList[i]))
+                        {
+                            b = true;
+                            break;
+                        }
+                    }
+                    if (b != true)
+                    {
+                        FLP1.Controls.Add(templabelList[i]);
+                    }
+                }
+            }
+            removeLabel();
+            control();
+            lbl_tov.Text = "Total Order Value:" + FLP1.Controls.Count.ToString();
+        }
+        private void removeLabel()
+        {
+            DataTable dt = db.removeLabel();
+            for (int j=0;j<FLP1.Controls.Count;j++)
+            {
+                Label lb = (Label)FLP1.Controls[j];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (lb.Name.Equals(dt.Rows[i]["orderid"]))
+                    {
+                        FLP1.Controls.RemoveAt(j);
+                    }
+                }
+            }
+        }
         private void orderView()
         {
 
-            if (FLP1.Controls.Count> 0)
+            /*if (FLP1.Controls.Count> 0)
             {
                 FLP1.Controls.Clear();
-            }
+            }*/
            
             ov.setAllDt();
             DataTable AllDt = ov.getAllDt();
+            oidList.Clear();
+            templabelList.Clear();
             for (int i = 0; i < AllDt.Rows.Count; i++)
             {
                 Label lb = new Label();
@@ -129,7 +188,9 @@ namespace Login
                 int currentTime = timeChanger(nowTime);
                 String oldotaketime = AllDt.Rows[i]["otaketime"].ToString();
                 int otakeTime = timeChanger(oldotaketime);
-                if (otakeTime-currentTime > 15) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF"); }
+                
+                if (otakeTime-currentTime > 15) {
+                    lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF"); }
                 else if (otakeTime - currentTime > 10) { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFF00"); }
                 else { lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF0000"); }
                 s += "Take Time:"+AllDt.Rows[i]["otaketime"];
@@ -137,16 +198,22 @@ namespace Login
                 tag[orderDetail.Rows.Count] = AllDt.Rows[i]["otaketime"].ToString().Substring(0, 5);
                 lb.Tag = tag;
                 lb.Click += new EventHandler(orderObject_click);
-                FLP1.Controls.Add(lb);
-                
+                /*FLP1.Controls.Add(lb);*/
+                templabelList.Add(lb);
+                oidList.Add(AllDt.Rows[i]["orderid"].ToString());
             }
-            lbl_tov.Text = "Total Order Value:" + FLP1.Controls.Count.ToString();
-            control();
+
+            
         }
         private int timeChanger(String time)
         {
             int inttime=0;
             String[] temp = time.Split(':');
+            if (temp[1].Equals("00"))
+            {
+                temp[0] = (Convert.ToInt16(temp[0]) - 1).ToString();
+                temp[1] = "60";
+            }
             inttime = (Convert.ToInt16(temp[0]) * 100) + Convert.ToInt16(temp[1]);
             return inttime;
         }
@@ -172,19 +239,51 @@ namespace Login
             cb.CheckedChanged += new EventHandler(CheckBox3_CheckedChanged);
         }
 
+        private void check_tick(Label lb)
+        {
+
+            if (lb.BackColor.G==0) //Red
+            {
+                lb.BackColor = Color.FromArgb(155,0,0);
+            }
+            if (lb.BackColor.G==255) //yellow
+            {
+                lb.BackColor = Color.FromArgb(155, 255, 0);
+            }
+            if(lb.BackColor.G==243) //blu
+            {
+                lb.BackColor = Color.FromArgb(107, 243, 255);
+            }
+        }
+        private void check_tick2(Label lb)
+        {
+            if (lb.BackColor.G == 0) //Red
+            {
+                lb.BackColor = Color.FromArgb(255, 0, 0);
+            }
+            if (lb.BackColor.G == 255) //yellow
+            {
+                lb.BackColor = Color.FromArgb(255, 255, 0);
+            }
+            if (lb.BackColor.G == 243) //blu
+            {
+                lb.BackColor = Color.FromArgb(207, 243, 255);
+            }
+        }
         private void orderObject_click(object sender, EventArgs e)
         {
             Label lb = (Label)sender;
-            if (labelList.IndexOf(lb)==-1)
+            int lbIndex = labelList.IndexOf(lb);
+            if (lbIndex == -1)
             {
                 labelList.Add(lb);
+                check_tick(lb);
             }
-            /*viewOrderDetail vod = new viewOrderDetail(lb);
-            vod.Deactivate += delegate
+            else if (lbIndex > -1)
             {
-                vod.Close();
-            };
-            vod.Show();*/
+                labelList.RemoveAt(lbIndex);
+                check_tick2(lb);
+            }
         }
         private void addGBFoodType()
         {
@@ -249,7 +348,7 @@ namespace Login
             btn_TimeClear.Location = new Point(120, 15);
             btn_TimeClear.ClientSize = new Size(70, 100);
             btn_quickPrint.Location = new Point(120,btn_quickPrint.Location.X + btn_print.ClientSize.Height);
-            btn_quickPrint.ClientSize = new Size(70, 100);
+            btn_quickPrint.ClientSize = new Size(70, 150);
         }
         
         public String getTimefromjson(String url)
@@ -498,6 +597,14 @@ namespace Login
                     String filename = (context[1] + "_" + nowTime + "_(" + (i + 1) + "@" + labelList.Count.ToString() + ").txt");
                     print.print(filename);
                     db.update(context[1], nowTime2);
+                    for (int j = 0; j < FLP1.Controls.Count;j++ )
+                    {
+                        Label Clb = (Label)FLP1.Controls[j];
+                        if (Clb.Name.Equals(lb.Name))
+                        {
+                            FLP1.Controls.RemoveAt(j);
+                        }
+                    }
                 }
                 labelList.Clear();
                 orderView();
