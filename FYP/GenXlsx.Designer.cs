@@ -39,7 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Next = new System.Windows.Forms.Button();
             this.chkList_Menu = new System.Windows.Forms.CheckedListBox();
-            this.btn_addMenutype = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.LinkMenuFood.SuspendLayout();
             this.Confirm.SuspendLayout();
@@ -57,7 +56,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(802, 85);
+            this.button1.Location = new System.Drawing.Point(802, 30);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 51);
@@ -85,7 +84,6 @@
             this.LinkMenuFood.AutoScroll = true;
             this.LinkMenuFood.Controls.Add(this.label1);
             this.LinkMenuFood.Controls.Add(this.button1);
-            this.LinkMenuFood.Controls.Add(this.btn_addMenutype);
             this.LinkMenuFood.Location = new System.Drawing.Point(4, 25);
             this.LinkMenuFood.Name = "LinkMenuFood";
             this.LinkMenuFood.Padding = new System.Windows.Forms.Padding(3);
@@ -175,17 +173,6 @@
             this.chkList_Menu.Size = new System.Drawing.Size(917, 464);
             this.chkList_Menu.TabIndex = 0;
             // 
-            // btn_addMenutype
-            // 
-            this.btn_addMenutype.Location = new System.Drawing.Point(802, 13);
-            this.btn_addMenutype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_addMenutype.Name = "btn_addMenutype";
-            this.btn_addMenutype.Size = new System.Drawing.Size(121, 51);
-            this.btn_addMenutype.TabIndex = 11;
-            this.btn_addMenutype.Text = "Add Menu Type";
-            this.btn_addMenutype.UseVisualStyleBackColor = true;
-            
-            // 
             // GenXlsx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -220,6 +207,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btn_addMenutype;
     }
 }

@@ -63,8 +63,13 @@ namespace Login
         private void btn_take_Click(object sender, EventArgs e)
         {
             grp_order.Visible = true;
-            txt_studid.Enabled = false;
-            DataTable dt_order = db.query("SELECT food.name from orders , orderfood , food where orderfood.orderid = orders.orderid and orderfood.orderDate = orders.orderDate and orderfood.foodid = food.foodid and orderfood.orderid = '"+txt_studid.Text+"' and orderfood.orderdate = CURDATE() ");
+            String id = txt_studid.Text;
+            CheckBoxes.Clear();
+            grp_order.Controls.Clear();
+            Button b_confirm = btn_Confirm;
+            grp_order.Controls.Add(b_confirm);
+            b_confirm.Dock = DockStyle.Bottom;
+            DataTable dt_order = db.query("SELECT food.name from orders , orderfood , food where orderfood.orderid = orders.orderid and orderfood.orderDate = orders.orderDate and orderfood.foodid = food.foodid and orderfood.orderid = '"+id+"' and orderfood.orderdate = CURDATE() ");
             int intialLeft = 30;
             int top = 30;
             

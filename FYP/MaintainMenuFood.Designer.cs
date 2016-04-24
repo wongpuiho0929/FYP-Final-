@@ -42,11 +42,11 @@
             this.chkedListBox_FoodType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkedListBox_FoodType.FormattingEnabled = true;
             this.chkedListBox_FoodType.IntegralHeight = false;
-            this.chkedListBox_FoodType.Location = new System.Drawing.Point(0, 30);
+            this.chkedListBox_FoodType.Location = new System.Drawing.Point(0, 0);
             this.chkedListBox_FoodType.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.chkedListBox_FoodType.MultiColumn = true;
             this.chkedListBox_FoodType.Name = "chkedListBox_FoodType";
-            this.chkedListBox_FoodType.Size = new System.Drawing.Size(794, 735);
+            this.chkedListBox_FoodType.Size = new System.Drawing.Size(794, 765);
             this.chkedListBox_FoodType.TabIndex = 41;
             // 
             // lab_FType
@@ -109,13 +109,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(794, 765);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lab_NumberOfIem);
             this.Controls.Add(this.btn_NEXT);
-            this.Controls.Add(this.chkedListBox_FoodType);
             this.Controls.Add(this.lab_FType);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.chkedListBox_FoodType);
             this.Font = new System.Drawing.Font("Comic Sans MS", 13F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "MaintainMenuFood";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

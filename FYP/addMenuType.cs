@@ -195,7 +195,7 @@ namespace Login
                     String s = "update menu set img='image/"+txt_id.Text+".jpg' where menuid='"+txt_id.Text+"'";
                     main.db.queny(s);
                 }
-                MessageBox.Show("UPDATE successfil");
+                MessageBox.Show("UPDATE successful");
             }
             else
             {
