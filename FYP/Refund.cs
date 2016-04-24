@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.IO;
 
 namespace Login
 {
@@ -34,18 +35,46 @@ namespace Login
             for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
             {
        
-                using (WebClient client = new WebClient())
+                /*using (WebClient client = new WebClient())
                 {
                     client.Headers.Add("Content-Type", "application/octet-stream");
-                    String s = "http://" + main.db.id + "/fyp_php/sendEmailRefund.php?money=" + dataGridView1.SelectedRows[i].Cells["balance"].Value.ToString()+"&month="+comboBox1.SelectedItem.ToString();
+                    String s = "http://" + main.db.id + "/fyp_php/sendEmailRefund.php?email="+dataGridView1.SelectedRows[i].Cells["email"].Value.ToString()+"&money=" + dataGridView1.SelectedRows[i].Cells["balance"].Value.ToString()+"&month="+comboBox1.SelectedItem.ToString();
                     client.OpenRead(new Uri(s));
                     
-                }
+                }*/
+                string param = "email=" + dataGridView1.SelectedRows[i].Cells["email"].Value.ToString() + "&money=" + dataGridView1.SelectedRows[i].Cells["balance"].Value.ToString() + "&month=" + comboBox1.SelectedItem.ToString();
+                MessageBox.Show(sendEmail(param, "http://" + main.db.id + "/fyp_php/sendEmailRefund.php"));
                 main.db.queny("update student set status = 'freeze' where stuid='"+dataGridView1.SelectedRows[i].Cells["stuid"].Value.ToString()+"'");
             }
+            
+            
             MessageBox.Show("Sent");
             refund_Load(sender, e);
         }
+
+        private String sendEmail(String param, String url)
+        {
+            byte[] bs = Encoding.ASCII.GetBytes(param);
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.ContentLength = bs.Length;
+
+            using (Stream reqStream = req.GetRequestStream())
+            {
+                reqStream.Write(bs, 0, bs.Length);
+            }
+            String s = "";
+            using (WebResponse wr = req.GetResponse())
+            {
+                Stream responseStream = wr.GetResponseStream();
+
+                StreamReader reader = new StreamReader(responseStream);
+                s = reader.ReadLine();
+            }
+            return s;
+        }
+
 
         private void Refund_FormClosed(object sender, FormClosedEventArgs e)
         {
