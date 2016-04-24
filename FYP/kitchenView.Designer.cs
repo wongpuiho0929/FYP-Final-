@@ -39,6 +39,7 @@
             this.FLP1 = new System.Windows.Forms.FlowLayoutPanel();
             this.FLP2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.gb_OrderStatus.SuspendLayout();
             this.gbFunction.SuspendLayout();
             this.gb_Information.SuspendLayout();
@@ -48,12 +49,13 @@
             // 
             // gb_OrderStatus
             // 
+            this.gb_OrderStatus.Controls.Add(this.button1);
             this.gb_OrderStatus.Controls.Add(this.btn_print);
             this.gb_OrderStatus.Location = new System.Drawing.Point(4, 605);
             this.gb_OrderStatus.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gb_OrderStatus.Name = "gb_OrderStatus";
             this.gb_OrderStatus.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gb_OrderStatus.Size = new System.Drawing.Size(267, 115);
+            this.gb_OrderStatus.Size = new System.Drawing.Size(267, 239);
             this.gb_OrderStatus.TabIndex = 5;
             this.gb_OrderStatus.TabStop = false;
             this.gb_OrderStatus.Text = "Print";
@@ -169,10 +171,22 @@
             this.panel1.Controls.Add(this.gb_Information);
             this.panel1.Controls.Add(this.gbFunction);
             this.panel1.Controls.Add(this.gb_foobType);
-            this.panel1.Location = new System.Drawing.Point(1707, 18);
+            this.panel1.Location = new System.Drawing.Point(1705, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 759);
+            this.panel1.Size = new System.Drawing.Size(200, 894);
             this.panel1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(8, 114);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(191, 93);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // kitchenView
             // 
@@ -210,5 +224,6 @@
         private System.Windows.Forms.Button btn_TimeClear;
         private System.Windows.Forms.Button btn_quickPrint;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }
