@@ -123,9 +123,7 @@
     <Compile Include="GroupCountView.Designer.cs">
       <DependentUpon>GroupCountView.cs</DependentUpon>
     </Compile>
-    <Compile Include="kitchenView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="kitchenView.cs" />
     <Compile Include="kitchenView.designer.cs">
       <DependentUpon>kitchenView.cs</DependentUpon>
     </Compile>
