@@ -22,7 +22,7 @@ namespace Login
         private void btn_Connect_Click(object sender, EventArgs e)
         {
             Database db = new Database();
-            db.changeConnection(textBox1.Text,textBox2.Text,textBox3.Text);
+            db.changeConnection(textBox1.Text,textBox2.Text,textBox3.Text,db.date);
             db.Connection();
             try
             {

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_addMenutype = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.LinkMenuFood = new System.Windows.Forms.TabPage();
@@ -40,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Next = new System.Windows.Forms.Button();
             this.chkList_Menu = new System.Windows.Forms.CheckedListBox();
+            this.btn_addMenutype = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.LinkMenuFood.SuspendLayout();
             this.Confirm.SuspendLayout();
@@ -54,17 +54,6 @@
             this.label1.Size = new System.Drawing.Size(41, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
-            // 
-            // btn_addMenutype
-            // 
-            this.btn_addMenutype.Location = new System.Drawing.Point(802, 13);
-            this.btn_addMenutype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_addMenutype.Name = "btn_addMenutype";
-            this.btn_addMenutype.Size = new System.Drawing.Size(121, 51);
-            this.btn_addMenutype.TabIndex = 11;
-            this.btn_addMenutype.Text = "Add Menu Type";
-            this.btn_addMenutype.UseVisualStyleBackColor = true;
-            this.btn_addMenutype.Click += new System.EventHandler(this.btn_addMenutype_Click);
             // 
             // button1
             // 
@@ -90,7 +79,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(937, 620);
             this.tabControl1.TabIndex = 13;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // LinkMenuFood
             // 
@@ -105,7 +93,6 @@
             this.LinkMenuFood.TabIndex = 0;
             this.LinkMenuFood.Text = "tabPage1";
             this.LinkMenuFood.UseVisualStyleBackColor = true;
-            this.LinkMenuFood.Click += new System.EventHandler(this.LinkMenuFood_Click);
             // 
             // Confirm
             // 
@@ -188,6 +175,17 @@
             this.chkList_Menu.Size = new System.Drawing.Size(917, 464);
             this.chkList_Menu.TabIndex = 0;
             // 
+            // btn_addMenutype
+            // 
+            this.btn_addMenutype.Location = new System.Drawing.Point(802, 13);
+            this.btn_addMenutype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_addMenutype.Name = "btn_addMenutype";
+            this.btn_addMenutype.Size = new System.Drawing.Size(121, 51);
+            this.btn_addMenutype.TabIndex = 11;
+            this.btn_addMenutype.Text = "Add Menu Type";
+            this.btn_addMenutype.UseVisualStyleBackColor = true;
+            
+            // 
             // GenXlsx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -212,7 +210,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_addMenutype;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage LinkMenuFood;
@@ -223,5 +220,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_addMenutype;
     }
 }

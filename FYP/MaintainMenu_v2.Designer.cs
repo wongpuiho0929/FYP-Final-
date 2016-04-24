@@ -44,6 +44,7 @@
             this.chk_Mon = new System.Windows.Forms.CheckBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_addMenutype = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btn_addMenutype);
             this.splitContainer1.Panel1.Controls.Add(this.grp_MenuInfo);
             this.splitContainer1.Panel1.Controls.Add(this.btn_ChangeMenu);
             this.splitContainer1.Panel1.Controls.Add(this.btn_genXML);
@@ -115,10 +117,10 @@
             // 
             // btn_ChangeMenu
             // 
-            this.btn_ChangeMenu.Location = new System.Drawing.Point(31, 409);
+            this.btn_ChangeMenu.Location = new System.Drawing.Point(181, 409);
             this.btn_ChangeMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_ChangeMenu.Name = "btn_ChangeMenu";
-            this.btn_ChangeMenu.Size = new System.Drawing.Size(271, 51);
+            this.btn_ChangeMenu.Size = new System.Drawing.Size(121, 51);
             this.btn_ChangeMenu.TabIndex = 14;
             this.btn_ChangeMenu.Text = "Change Default Menu";
             this.btn_ChangeMenu.UseVisualStyleBackColor = true;
@@ -249,6 +251,17 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1462, 1049);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // btn_addMenutype
+            // 
+            this.btn_addMenutype.Location = new System.Drawing.Point(31, 409);
+            this.btn_addMenutype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_addMenutype.Name = "btn_addMenutype";
+            this.btn_addMenutype.Size = new System.Drawing.Size(121, 51);
+            this.btn_addMenutype.TabIndex = 16;
+            this.btn_addMenutype.Text = "Add Menu Type";
+            this.btn_addMenutype.UseVisualStyleBackColor = true;
+            this.btn_addMenutype.Click += new System.EventHandler(this.btn_addMenutype_Click);
+            // 
             // MaintainMenu_v2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -293,5 +306,6 @@
         private System.Windows.Forms.GroupBox grp_MenuInfo;
         private System.Windows.Forms.Label lab_Type;
         private System.Windows.Forms.Label lab_menuof;
+        private System.Windows.Forms.Button btn_addMenutype;
     }
 }

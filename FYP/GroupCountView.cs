@@ -228,8 +228,8 @@ namespace Login
         }
         private void addTakeTime()
         {
-            DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/start.php"));
-            DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id.Split(' ')[1] + "/fyp_php/pc/end.php"));
+            DateTime startTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/start.php"));
+            DateTime endTime = DateTime.Parse(getTimefromjson("http://" + login.database.id + "/fyp_php/pc/end.php"));
 
             int startHour = startTime.Hour - 1;
             int endHour = endTime.Hour;

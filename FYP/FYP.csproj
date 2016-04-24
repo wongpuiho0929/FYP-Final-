@@ -135,6 +135,7 @@
     <Compile Include="OldDataToDB.Designer.cs">
       <DependentUpon>OldDataToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Print.cs" />
     <Compile Include="Reprint.cs">
       <SubType>Form</SubType>
     </Compile>

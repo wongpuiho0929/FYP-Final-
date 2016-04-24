@@ -73,7 +73,7 @@ namespace Login
         private void GenXlsx_Load(object sender, EventArgs e)
         {
             panels.Clear();
-            if (DialogResult.Yes == MessageBox.Show("Base on the default menu?", "Create Menu", MessageBoxButtons.YesNo))
+            /*if (DialogResult.Yes == MessageBox.Show("Base on the default menu?", "Create Menu", MessageBoxButtons.YesNo))
             {
 
                 String s = SaveFilePath();
@@ -115,7 +115,7 @@ namespace Login
               
                 
             }
-            else {
+            else {*/
                 /*-------------------------tabpage3---------------------------------------*/
                 tabControl1.SelectedIndex = 2;
                 DataTable dt_menu = main.db.getDb("Menu");
@@ -124,12 +124,12 @@ namespace Login
                     chkList_Menu.Items.Add(dt_menu.Rows[i]["name"].ToString());
                     
                 }
-            }
+            
         }
 
         private void lab_Click(object sender, EventArgs e) {
             ((Label)sender).Dispose();
-            MessageBox.Show("1");
+            MessageBox.Show("Delete type of "+((Label)sender).Text);
         }
 
         private void grp_DragEnter(object sender, DragEventArgs e) {
@@ -147,11 +147,7 @@ namespace Login
         }
    
 
-    private void btn_addMenutype_Click(object sender, EventArgs e)
-        {
-            addMenuType addMenu = new addMenuType(main,m_v2);
-            addMenu.ShowDialog();
-        }
+   
 
     private void button1_Click(object sender, EventArgs e)
     {
@@ -389,14 +385,6 @@ namespace Login
         return s;
     }
 
-    private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-    {
 
-    }
-
-    private void LinkMenuFood_Click(object sender, EventArgs e)
-    {
-
-    }
     }
 }

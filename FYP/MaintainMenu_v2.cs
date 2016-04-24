@@ -341,6 +341,12 @@ namespace Login
             ChangeMenu cMenu = new ChangeMenu(main);
             cMenu.ShowDialog();
         }
+
+        private void btn_addMenutype_Click(object sender, EventArgs e)
+        {
+            addMenuType addMenu = new addMenuType(main, this);
+            addMenu.ShowDialog();
+        }
       
     }
     

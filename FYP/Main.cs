@@ -125,8 +125,9 @@ namespace Login
                         String s1 = "UPDATE `menu` SET `isShow`='N' WHERE `menuId`='" + dt_dbmenu.Rows[i]["menuid"].ToString() + "'";
                         db.queny(s1);
                     }
-                    MessageBox.Show("Menu Updated!");
+                    
                 }
+                MessageBox.Show("Menu Updated!");
                 db.changeDate(DateTime.Today.ToShortDateString());
 
             }

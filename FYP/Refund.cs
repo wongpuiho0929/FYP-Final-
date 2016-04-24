@@ -37,7 +37,7 @@ namespace Login
                 using (WebClient client = new WebClient())
                 {
                     client.Headers.Add("Content-Type", "application/octet-stream");
-                    String s = "http://" + main.db.id.Split(' ')[1] + "/fyp_php/sendEmailRefund.php?money=" + dataGridView1.SelectedRows[i].Cells["balance"].Value.ToString();
+                    String s = "http://" + main.db.id + "/fyp_php/sendEmailRefund.php?money=" + dataGridView1.SelectedRows[i].Cells["balance"].Value.ToString()+"&month="+comboBox1.SelectedItem.ToString();
                     client.OpenRead(new Uri(s));
                     
                 }
