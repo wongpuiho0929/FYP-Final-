@@ -325,16 +325,36 @@ namespace Login
                 cb.ClientSize = new Size(30, 30);
                 cb.Location = new Point(10, high);
                 cb.Font = new System.Drawing.Font("Microsoft JhengHei", 18, System.Drawing.FontStyle.Bold);
-                
+
                 if (min == 0)
                 {
-                    startHour ++;
-                    String temp = "0" + min.ToString();
-                    cb.Text = startHour.ToString() + ":" +temp;
+                    startHour++;
+                    String s = "";
+                    if (startHour < 10)
+                    {
+                        s += "0" + startHour.ToString();
+                        String temp = "0" + min.ToString();
+                        cb.Text = s + ":" + temp;
+                    }
+                    else
+                    {
+                        String temp = "0" + min.ToString();
+                        cb.Text = startHour.ToString() + ":" + temp;
+                    }
                 }
                 else
                 {
-                    cb.Text = startHour.ToString() + ":" + min.ToString();
+                    String s = "";
+                    if (startHour < 10)
+                    {
+                        s += "0" + startHour.ToString();
+                        cb.Text = s + ":" + min.ToString();
+                    }
+                    else
+                    {
+
+                        cb.Text = startHour.ToString() + ":" + min.ToString(); ;
+                    }
                 }
                 high += 30;
                 min = (min + 30) % 60;

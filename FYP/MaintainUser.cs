@@ -79,7 +79,7 @@ namespace Login
         private void rBtn_Staff_CheckedChanged(object sender, EventArgs e)
         {
             DGV_Show.Dock = DockStyle.Top;
-            DataTable dt_Staff = db.getDb("Select username ,name, position  from Staff");
+            DataTable dt_Staff = db.query("Select username ,name, position  from Staff");
             DGV_Show.DataSource = dt_Staff;
             grpbox_Staff.Visible = true;
             grpbox_Student.Visible = false;

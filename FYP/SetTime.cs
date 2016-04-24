@@ -18,8 +18,7 @@ namespace Login
     {
         
         private DateTime s = new DateTime();
-        private int time = 24 * 60 / 30;
-        private String [] text;
+        private int time = 24;
         private DateTime startTime;
         private DateTime endTime;
         private String quota;
@@ -32,7 +31,7 @@ namespace Login
             for (int i = 0; i < time; i++)
             {
                 combo_Start.Items.Add(s.ToShortTimeString());
-                s = s.AddMinutes(30);
+                s = s.AddMinutes(60);
             }
            
         }
@@ -57,13 +56,13 @@ namespace Login
             DateTime startTime = new DateTime();
             for (int i = 0; i < combo_Start.SelectedIndex; i++)
             {
-                startTime = startTime.AddMinutes(30);
+                startTime = startTime.AddMinutes(60);
             }
-            startTime = startTime.AddMinutes(30);
+            startTime = startTime.AddMinutes(60);
             for (int i = 0; i < s-1; i++)
             {
                 combo_End.Items.Add(startTime.ToShortTimeString());
-                startTime = startTime.AddMinutes(30);
+                startTime = startTime.AddMinutes(60);
             }
 
 
