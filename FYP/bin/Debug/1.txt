@@ -1,5 +1,5 @@
-server =127.0.0.1
+server =192.168.1.104
 database =fyp_db
 uid =root
 password =
-currentday =2016/4/25
+currentday =25/4/2016

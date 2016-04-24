@@ -109,6 +109,10 @@ namespace Login
         {
             try
             {
+                if (txt_userName.Text == "" || txt_password.Text == "" || txt_staffName.Text == "") {
+                    MessageBox.Show("Please fill all!");
+                    return;
+                }
                 String s = " INSERT INTO `staff` (`username`, `password`, `position`, `name`) VALUES('" + txt_userName.Text + "', '" + txt_password.Text + "', '" + combo_position.SelectedItem.ToString() + "', '" + txt_staffName.Text + "')";
                 db.queny(s);
                 rBtn_Staff_CheckedChanged(sender, e);
@@ -199,15 +203,20 @@ namespace Login
             else if (dt.SelectedRows[0].Cells["status"].Value.ToString().Equals("processing"))
             {
                 rBtn_P.Checked = true;
+                button1.Visible = true;
             }
         }
 
         private void filldataStaff(DataGridView dt) {
             btn_back.Visible = true;
             txt_userName.Text = dt.SelectedRows[0].Cells["userName"].Value.ToString();
-            
+            txt_password.Text = dt.SelectedRows[0].Cells["password"].Value.ToString();
             combo_position.SelectedItem = dt.SelectedRows[0].Cells["position"].Value.ToString();
             txt_staffName.Text = dt.SelectedRows[0].Cells["name"].Value.ToString();
+            if (!txt_userName.Text.Equals("admin"))
+            {
+                button2.Visible = true;
+            }
         }
 
         private void btn_maintain_Click(object sender, EventArgs e)
@@ -237,6 +246,40 @@ namespace Login
             else if (rBtn_Student.Checked) {
                 rBtn_Student_CheckedChanged(sender, e);
             }
+            btn_back.Visible = false;
+            button1.Visible = false;
+            button2.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String s = "delete from student where stuid='"+txt_studid.Text+"'";
+            db.queny(s);
+            MessageBox.Show("Deleted");
+            button1.Visible = false;
+            rBtn_Student_CheckedChanged(sender, e);
+            txt_studid.Text = "";
+            txt_stuPassword.Text = "";
+            txt_email.Text = "";
+            num_balance.Value = 0;
+            txt_email.Text = "";
+            txt_studName.Text = "";
+            button1.Visible = false;
+            btn_back.Visible = false;
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            String s = "delete from staff where username='" + txt_userName.Text + "'";
+            db.queny(s);
+            MessageBox.Show("Deleted");
+            button2.Visible = false;
+            rBtn_Staff_CheckedChanged(sender, e);
+            txt_password.Text = "";
+            txt_staffName.Text = "";
+            txt_userName.Text = "";
+            button2.Visible = false;
             btn_back.Visible = false;
         }
 

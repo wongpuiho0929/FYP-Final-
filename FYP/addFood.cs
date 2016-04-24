@@ -283,6 +283,12 @@ namespace Login
             main.Show();
             m_v2.Show();
         }
+
+        private void btn_category_Click(object sender, EventArgs e)
+        {
+            FoodType FT = new FoodType(main);
+            FT.ShowDialog();
+        }
         /*-------------------------------------------------------------------------------------*/
 
         

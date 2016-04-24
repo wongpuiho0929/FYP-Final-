@@ -126,6 +126,7 @@
             this.btn_category.TabIndex = 36;
             this.btn_category.Text = "Food Type";
             this.btn_category.UseVisualStyleBackColor = true;
+            this.btn_category.Click += new System.EventHandler(this.btn_category_Click);
             // 
             // num_price
             // 
