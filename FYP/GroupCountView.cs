@@ -35,7 +35,7 @@ namespace Login
         {
             this.Width = screenWidth/2+200;
             this.Height = screenHeight/2+200;
-            panel1.Height = this.Height;
+            gb_fiter.Height = this.Height;
             db = new Database();
             db.Connection();
 
@@ -343,11 +343,6 @@ namespace Login
         private void CheckBox1_CheckedChanged(Object sender, EventArgs e)
         {
             CountView();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         
