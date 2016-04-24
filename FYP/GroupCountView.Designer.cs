@@ -32,7 +32,9 @@
             this.gb_fiter = new System.Windows.Forms.GroupBox();
             this.gb_type = new System.Windows.Forms.GroupBox();
             this.gb_time = new System.Windows.Forms.GroupBox();
+            this.btn_GrpPrint = new System.Windows.Forms.Button();
             this.gb_fiter.SuspendLayout();
+            this.gb_time.SuspendLayout();
             this.SuspendLayout();
             // 
             // FLP2
@@ -64,12 +66,23 @@
             // 
             // gb_time
             // 
+            this.gb_time.Controls.Add(this.btn_GrpPrint);
             this.gb_time.Location = new System.Drawing.Point(6, 28);
             this.gb_time.Name = "gb_time";
             this.gb_time.Size = new System.Drawing.Size(200, 100);
             this.gb_time.TabIndex = 0;
             this.gb_time.TabStop = false;
             this.gb_time.Text = "Time";
+            // 
+            // btn_GrpPrint
+            // 
+            this.btn_GrpPrint.Location = new System.Drawing.Point(139, 19);
+            this.btn_GrpPrint.Name = "btn_GrpPrint";
+            this.btn_GrpPrint.Size = new System.Drawing.Size(61, 64);
+            this.btn_GrpPrint.TabIndex = 0;
+            this.btn_GrpPrint.Text = "Quick Group by time Print";
+            this.btn_GrpPrint.UseVisualStyleBackColor = true;
+            this.btn_GrpPrint.Click += new System.EventHandler(PrintMessage_click);
             // 
             // GroupCountView
             // 
@@ -82,6 +95,7 @@
             this.Text = "Group Count Viewer";
             this.Load += new System.EventHandler(this.GroupCountView_Load);
             this.gb_fiter.ResumeLayout(false);
+            this.gb_time.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -92,5 +106,6 @@
         private System.Windows.Forms.GroupBox gb_fiter;
         private System.Windows.Forms.GroupBox gb_time;
         private System.Windows.Forms.GroupBox gb_type;
+        private System.Windows.Forms.Button btn_GrpPrint;
     }
 }
