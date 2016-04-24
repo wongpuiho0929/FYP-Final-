@@ -16,7 +16,7 @@ namespace Login
         public  Database db;
         public  List<CheckBox> CheckBoxes = new List<CheckBox>();
         private DataTable chkbox ;
-        public  String sql="";
+        public  String sql="(";
         private Boolean chick = false;
         private Boolean foodAddChick = false;
 
@@ -75,6 +75,7 @@ namespace Login
                     else {
                         query1("ftypeid='" + temp + "'");
                     }
+                   
                 }
             }
             
@@ -84,10 +85,25 @@ namespace Login
         {
             if (chk_N.Checked)
             {
-                query("isShow='N'");
+                if (sql == "(")
+                {
+                    sql += ")isShow='N'";
+                }
+                else
+                {
+                    sql += " )and isShow='N'";
+                }
+                if(!sql.Contains(")")){
+                       sql += ")";
+              }
+                MessageBox.Show(sql);
+                  SearchByChk(sql);
             }
-            else {
-                query1("isShow='N'");
+            else
+            {
+                sql = sql.Replace(" )and isShow='N'", "");
+                sql = sql.Replace(")isShow='N'", "");
+                SearchByChk(sql);
             }
         }
 
@@ -95,21 +111,36 @@ namespace Login
         {
             if (chk_Y.Checked)
             {
-                query("isShow='Y'");
+                if (sql == "(")
+                {
+                    sql += ")isShow='Y'";
+                }
+                else
+                {
+                    sql += " )and isShow='Y'";
+                }
+                if (!sql.Contains(")"))
+                {
+                    sql += ")";
+                }
+                SearchByChk(sql);
             }
             else {
-                query1("isShow='Y'");
+                sql = sql.Replace(" )and isShow='Y'", "");
+                sql = sql.Replace(")isShow='Y'", "");
+                SearchByChk(sql);
             }
         }
 
         private void query(String s) {
-            if (sql != "")
+            if (sql != "(")
             {
                 sql += " OR " + s;
             }
             else {
-                sql = s;
+                sql += s;
             }
+            MessageBox.Show(sql);
             SearchByChk(sql);
         }
         private void query1(String s)
@@ -121,14 +152,17 @@ namespace Login
             }
             else
             {
-                sql = "";
+                sql = "(";
             }
             SearchByChk(sql);
         }
         
         private void SearchByChk(String s) {
-            if (s != "")
+            if (s != "(")
             {
+                if (!s.Contains(")")) {
+                    s += ")";
+                }
                 DataTable food = db.getDb("Food where " + s);
                 DGW_show.DataSource = food;
             }

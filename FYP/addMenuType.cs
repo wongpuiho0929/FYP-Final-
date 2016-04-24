@@ -17,6 +17,8 @@ namespace Login
         private DataTable dt_menuCategory;
         private String photoPath;
         private MaintainMenu_v2 m_v2;
+        private List<Label> labels = new List<Label>();
+        private List<NumericUpDown> nums = new List<NumericUpDown>();
 
         public addMenuType(DataTable dt, Main main, MaintainMenu_v2 m_v2)
         {
@@ -98,6 +100,30 @@ namespace Login
                 chk_null.Checked = false;
 
             }
+            //-------------tab2-------------------------------------//
+            int intialTop = 60;
+            DataTable dt_menufood = main.db.query("Select foodtype.name ,menufood.many from menufood , foodtype where menufood.ftypeid = foodtype.ftypeid and menuid = '"+txt_id.Text+"'");
+
+            for (int i = 0; i < dt_menufood.Rows.Count; i++)
+            {
+                Label s = new Label();
+                NumericUpDown num = new NumericUpDown();
+                s.Left = 5;
+                num.Left = 150;
+                s.Top = intialTop;
+                num.Top = intialTop;
+                s.Name = "Label" + i;
+                num.Name = "number" + i;
+                s.Text = dt_menufood.Rows[i]["name"].ToString();
+                num.Minimum = 1;
+                num.Maximum = 10;
+                tabControl1.TabPages[1].Controls.Add(s);
+                tabControl1.TabPages[1].Controls.Add(num);
+                labels.Add(s);
+                nums.Add(num);
+                intialTop += 50;
+            }
+          
         }
 
         private void pic_Img_DragEnter(object sender, DragEventArgs e)
@@ -232,476 +258,13 @@ namespace Login
             }
         }
 
-        private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label51_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox21_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label61_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label47_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label43_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox18_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label25_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label64_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label45_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label24_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label41_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label29_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label49_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel8_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label32_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label59_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label56_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txt_shortName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label62_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label52_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label31_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void numericUpDown7_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label30_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label60_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label50_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox12_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label48_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void combo_Category_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox20_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox13_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label54_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label53_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label46_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label22_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void num_price_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label63_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox19_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label57_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox15_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label28_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label58_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox14_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label55_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox14_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label37_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox17_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void button2_Click(object sender, EventArgs e)
         {
 
             tabControl1.SelectedIndex = 1;
-            lab_History.Text = "History of" + txt_id.Text +" - " + txt_Name.Text;
+            lab_History.Text = "Food of" + txt_id.Text +" - " + txt_Name.Text;
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
@@ -709,10 +272,6 @@ namespace Login
             tabControl1.SelectedIndex = 0;
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void addMenuType_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -720,6 +279,7 @@ namespace Login
             m_v2.Show();
         }
 
+       
        
 
         

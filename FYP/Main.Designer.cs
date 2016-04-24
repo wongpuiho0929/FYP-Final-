@@ -121,7 +121,7 @@
             this.btn_Staff.Name = "btn_Staff";
             this.btn_Staff.Size = new System.Drawing.Size(205, 111);
             this.btn_Staff.TabIndex = 7;
-            this.btn_Staff.Text = "Staff";
+            this.btn_Staff.Text = "User";
             this.btn_Staff.UseVisualStyleBackColor = true;
             this.btn_Staff.Click += new System.EventHandler(this.btn_Staff_Click);
             // 

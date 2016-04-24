@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_back = new System.Windows.Forms.Button();
@@ -64,6 +64,8 @@
             this.lab_passwordStudent = new System.Windows.Forms.Label();
             this.txt_studid = new System.Windows.Forms.TextBox();
             this.lab_stuid = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,10 +92,10 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.grpbox_Staff);
             this.splitContainer1.Panel2.Controls.Add(this.DGV_Show);
+            this.splitContainer1.Panel2.Controls.Add(this.grpbox_Staff);
             this.splitContainer1.Panel2.Controls.Add(this.grpbox_Student);
-            this.splitContainer1.Size = new System.Drawing.Size(1304, 760);
+            this.splitContainer1.Size = new System.Drawing.Size(1304, 812);
             this.splitContainer1.SplitterDistance = 433;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
@@ -170,6 +172,7 @@
             // 
             this.grpbox_Staff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpbox_Staff.Controls.Add(this.button2);
             this.grpbox_Staff.Controls.Add(this.btn_cancel);
             this.grpbox_Staff.Controls.Add(this.btn_save);
             this.grpbox_Staff.Controls.Add(this.combo_position);
@@ -184,7 +187,7 @@
             this.grpbox_Staff.Font = new System.Drawing.Font("Comic Sans MS", 13F);
             this.grpbox_Staff.Location = new System.Drawing.Point(13, 470);
             this.grpbox_Staff.Name = "grpbox_Staff";
-            this.grpbox_Staff.Size = new System.Drawing.Size(838, 393);
+            this.grpbox_Staff.Size = new System.Drawing.Size(837, 393);
             this.grpbox_Staff.TabIndex = 38;
             this.grpbox_Staff.TabStop = false;
             this.grpbox_Staff.Text = "Staff";
@@ -318,14 +321,14 @@
             this.DGV_Show.BackgroundColor = System.Drawing.Color.Azure;
             this.DGV_Show.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DGV_Show.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_Show.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Comic Sans MS", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_Show.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_Show.Dock = System.Windows.Forms.DockStyle.Top;
             this.DGV_Show.Location = new System.Drawing.Point(0, 0);
             this.DGV_Show.MultiSelect = false;
@@ -341,6 +344,7 @@
             // 
             this.grpbox_Student.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpbox_Student.Controls.Add(this.button1);
             this.grpbox_Student.Controls.Add(this.groupBox2);
             this.grpbox_Student.Controls.Add(this.num_balance);
             this.grpbox_Student.Controls.Add(this.lab_balance);
@@ -353,9 +357,9 @@
             this.grpbox_Student.Controls.Add(this.txt_studid);
             this.grpbox_Student.Controls.Add(this.lab_stuid);
             this.grpbox_Student.Font = new System.Drawing.Font("Comic Sans MS", 13F);
-            this.grpbox_Student.Location = new System.Drawing.Point(12, 470);
+            this.grpbox_Student.Location = new System.Drawing.Point(13, 470);
             this.grpbox_Student.Name = "grpbox_Student";
-            this.grpbox_Student.Size = new System.Drawing.Size(838, 374);
+            this.grpbox_Student.Size = new System.Drawing.Size(837, 374);
             this.grpbox_Student.TabIndex = 1;
             this.grpbox_Student.TabStop = false;
             this.grpbox_Student.Text = "Student";
@@ -526,12 +530,38 @@
             this.lab_stuid.TabIndex = 48;
             this.lab_stuid.Text = "Student ID:";
             // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 13F);
+            this.button1.Location = new System.Drawing.Point(541, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(226, 44);
+            this.button1.TabIndex = 50;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Comic Sans MS", 13F);
+            this.button2.Location = new System.Drawing.Point(541, 28);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(226, 44);
+            this.button2.TabIndex = 51;
+            this.button2.Text = "Delete";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MaintainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1304, 760);
+            this.ClientSize = new System.Drawing.Size(1304, 812);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -594,6 +624,8 @@
         private System.Windows.Forms.RadioButton rBtn_A;
         private System.Windows.Forms.RadioButton rBtn_P;
         private System.Windows.Forms.Button btn_back;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
 
 
     }

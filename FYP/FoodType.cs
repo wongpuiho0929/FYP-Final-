@@ -12,6 +12,7 @@ namespace Login
     public partial class FoodType : Form
     {
         private MaintainMenu menu;
+        private Main main;
         private Database db;
 
 
@@ -20,6 +21,13 @@ namespace Login
             InitializeComponent();
             this.menu = menu;
             db = menu.db;
+        }
+
+        public FoodType(Main main)
+        {
+            InitializeComponent();
+            this.main = main;
+            db = main.db;
         }
 
         private void FoodType_Load(object sender, EventArgs e)
@@ -47,6 +55,7 @@ namespace Login
             btn_maintain.BackColor = Color.Cyan;
             TrueFalse(true);
             dataGridView1.Enabled = false;
+            button1.Visible = true;
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
@@ -55,6 +64,7 @@ namespace Login
             btn_add.BackColor = Color.Azure;
             btn_maintain.Enabled = true;
             TrueFalse(false);
+            button1.Visible = false;
             dataGridView1.Enabled = true;
         }
 
@@ -76,15 +86,20 @@ namespace Login
             dataGridView1.DataSource = dt_FoodType;
             btn_maintain.BackColor = Color.Azure;
             btn_add.Enabled = true;
+            button1.Visible = true;
+
         }
 
         private void FoodType_FormClosing(object sender, FormClosingEventArgs e)
         {
-            menu.CheckBoxes.Clear();
-            menu.sql = "";
-            menu.combo_foodType.Items.Clear();
-            menu.groupBox1.Controls.Clear();
-            menu.MaintainMenu_Load(sender, e);
+            if (menu != null)
+            {
+                menu.CheckBoxes.Clear();
+                menu.sql = "";
+                menu.combo_foodType.Items.Clear();
+                menu.groupBox1.Controls.Clear();
+                menu.MaintainMenu_Load(sender, e);
+            }
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -102,6 +117,7 @@ namespace Login
             btn_maintain.Enabled = false;
             btn_add.BackColor = Color.Cyan;
             dataGridView1.Enabled = false;
+            button1.Visible = true;
         }
 
         private void btn_addSave_Click(object sender, EventArgs e)
@@ -116,10 +132,24 @@ namespace Login
                 FoodType_Load(sender, e);
                 btn_add.BackColor = Color.Azure;
                 dataGridView1.Enabled = true;
+                button1.Visible = true;
             }
             else { 
                 MessageBox.Show("Enter Food Type Name.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btn_addSave.Visible = false;
+            button1.Visible = false;
+            btn_Save.Visible = false;
+            btn_maintain.Enabled = true;
+            btn_add.Enabled = true;
+            FoodType_Load(sender, e);
+            btn_add.BackColor = Color.Azure;
+            btn_maintain.BackColor = Color.Azure;
+            dataGridView1.Enabled = true;
         }
 
 
