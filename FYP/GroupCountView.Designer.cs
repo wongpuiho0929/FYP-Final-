@@ -81,6 +81,7 @@
             this.btn_GrpPrint.TabIndex = 0;
             this.btn_GrpPrint.Text = "Quick Group by time Print";
             this.btn_GrpPrint.UseVisualStyleBackColor = true;
+            this.btn_GrpPrint.Click += new System.EventHandler(this.PrintMessage_click);
             // 
             // FLP2
             // 
