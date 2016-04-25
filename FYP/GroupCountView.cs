@@ -195,12 +195,25 @@ namespace Login
                     if (cb.Checked == true)
                         tcb.Add(cb);
                 }
-                foreach (CheckBoxEx cb in lcb)
+                if (lcb.Count > 0)
                 {
-                    String time = cb.Text+":00";
-                    String cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId AND O.oTakeTime='"+time+"' and o.status = 'processing'";
-                    
-                    if(tcb.Count>0){
+                    String cmdText = "";
+                    if (lcb.Count > 0)
+                    {
+                        cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId  and o.status = 'processing'";
+                        cmdText += "AND O.oTakeTime in(";
+                        for (int i = 0; i < lcb.Count; i++)
+                        {
+                            if (i != 0)
+                            {
+                                cmdText += ",";
+                            }
+                            cmdText += "'"+lcb[i].Text + ":00'";
+                        }
+                        cmdText += ")";
+                    }
+                    if (tcb.Count > 0)
+                    {
                         cmdText += "AND F.fTypeId IN (";
                         for (int i = 0; i < tcb.Count; i++)
                         {
@@ -210,14 +223,14 @@ namespace Login
                             }
                             cmdText += "'" + tcb[i].Tag + "'";
                         }
-                            cmdText += ")";
+                        cmdText += ")";
                     }
                     cmdText += "GROUP BY o.orderid";
                     DataTable dt = db.printGrp(cmdText);
                     for (int j = 0; j < dt.Rows.Count; j++)
                     {
                         printcount++;
-                        String counter = "(" + printcount + "/" + (lcb.Count * dt.Rows.Count) + ")";
+                        String counter = "(" + printcount + "/" + dt.Rows.Count + ")";
                         String s = "Asia Pacific";
                         s += "\r" + dt.Rows[j]["orderid"];
                         DataTable orderDt = db.getDb2(dt.Rows[j]["orderid"].ToString());
@@ -225,16 +238,16 @@ namespace Login
                             s += "\r" + orderDt.Rows[k]["shortname"];
                         s += "\rTake Time:" + dt.Rows[j]["otaketime"]; //get order string end
                         s += "\r" + nowTime2;
-                        s += "\r"+counter;
+                        s += "\r" + counter;
 
                         String[] context = s.Split('\r');
-                        if (!Directory.Exists(@"C:\\My Documents\\"+todayString+"\\"))
+                        if (!Directory.Exists(@"C:\\My Documents\\" + todayString + "\\"))
                         {
                             DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
                         }
-                        String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt";
+                        String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + printcount + "@" + dt.Rows.Count + ").txt";
                         System.IO.File.WriteAllLines(path, context);
-                        String filename = (context[1] + "_" + nowTime + "_(" +printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt");
+                        String filename = (context[1] + "_" + nowTime + "_(" + printcount + "@" + dt.Rows.Count + ").txt");
                         print.print(filename);
                         db.update(context[1], nowTime2);
                     }

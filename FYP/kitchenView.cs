@@ -657,6 +657,7 @@ namespace Login
 
         private void btn_quickPrint_Click(object sender, EventArgs e)
         {
+            
             DialogResult result = MessageBox.Show("Do you want to print these time group order?", "Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
@@ -678,11 +679,23 @@ namespace Login
                     if (cb.Checked == true)
                         tcb.Add(cb);
                 }
-                foreach (CheckBoxEx cb in lcb)
+                if (lcb.Count > 0)
                 {
-                    String time = cb.Text + ":00";
-                    String cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId AND O.oTakeTime='" + time + "' and o.status = 'processing'";
-
+                    String cmdText = "";
+                    if (lcb.Count > 0)
+                    {
+                        cmdText = "select * FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId  and o.status = 'processing'";
+                        cmdText += "AND O.oTakeTime in(";
+                        for (int i = 0; i < lcb.Count; i++)
+                        {
+                            if (i != 0)
+                            {
+                                cmdText += ",";
+                            }
+                            cmdText += "'"+lcb[i].Text + ":00'";
+                        }
+                        cmdText += ")";
+                    }
                     if (tcb.Count > 0)
                     {
                         cmdText += "AND F.fTypeId IN (";
@@ -696,12 +709,12 @@ namespace Login
                         }
                         cmdText += ")";
                     }
-                    cmdText += "GROUP BY F.shortName";
+                    cmdText += "GROUP BY o.orderid";
                     DataTable dt = db.printGrp(cmdText);
                     for (int j = 0; j < dt.Rows.Count; j++)
                     {
                         printcount++;
-                        String counter = "(" + printcount + "/" + (lcb.Count * dt.Rows.Count) + ")";
+                        String counter = "(" + printcount + "/" + dt.Rows.Count + ")";
                         String s = "Asia Pacific";
                         s += "\r" + dt.Rows[j]["orderid"];
                         DataTable orderDt = db.getDb2(dt.Rows[j]["orderid"].ToString());
@@ -716,9 +729,9 @@ namespace Login
                         {
                             DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
                         }
-                        String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt";
+                        String path = @"C:\\My Documents\\" + todayString + "\\" + context[1] + "_" + nowTime + "_(" + printcount + "@" + dt.Rows.Count + ").txt";
                         System.IO.File.WriteAllLines(path, context);
-                        String filename = (context[1] + "_" + nowTime + "_(" + printcount + "@" + (lcb.Count * dt.Rows.Count) + ").txt");
+                        String filename = (context[1] + "_" + nowTime + "_(" + printcount + "@" + dt.Rows.Count + ").txt");
                         print.print(filename);
                         db.update(context[1], nowTime2);
                     }
@@ -732,6 +745,7 @@ namespace Login
             {
                 MessageBox.Show("Printing is Canelled");
             }
+        
         }
 
         
