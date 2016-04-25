@@ -163,9 +163,9 @@ namespace Login
                 {
                     DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
                 }
-                String path = @"C:\\My Documents\\" + todayString + "\\grptemp.txt";
+                String path = @"C:\\My Documents\\" + todayString + "\\O99999999_99-99-99_(1@1).txt";
                 System.IO.File.WriteAllLines(path, context);
-                print.print("grptemp.txt");
+                print.print("O99999999_99-99-99_(1@1).txt");
             }
             else
             {
@@ -323,9 +323,14 @@ namespace Login
                 cb.CheckedChanged += new EventHandler(CheckBoxTime_CheckedChanged);
                 gb_time.Controls.Add(cb);
 
+            
             }
-            btn_GrpPrint.Location = new Point(120, 15);
+            btn_TimeClear.Location = new Point(120, 15);
+            btn_TimeClear.ClientSize = new Size(70, 100);
+            btn_GrpPrint.Location = new Point(120, btn_GrpPrint.Location.Y + btn_TimeClear.ClientSize.Height);
             btn_GrpPrint.ClientSize = new Size(70, 100);
+            btn_pgop.Location = new Point(120, btn_pgop.Location.Y + (btn_GrpPrint.ClientSize.Height*2));
+            btn_pgop.ClientSize = new Size(70, 100);
         }
 
       public String getTimefromjson(String url)
@@ -359,56 +364,92 @@ namespace Login
             CountView();
         }
 
+        private void btn_TimeClear_Click(object sender, EventArgs e)
+        {
+            foreach (CheckBoxEx cb in time)
+            {
+                if (cb.Checked == true)
+                {
+                    cb.Checked = false;
+                }
+            }
+        }
+
+        private void btn_pgop_Click(object sender, EventArgs e)
+        {
+            Print print = new Print();
+            List<CheckBoxEx> lcb = new List<CheckBoxEx>();
+            List<CheckBoxEx> tcb = new List<CheckBoxEx>();
+            for (int i = 0; i < time.Length; i++)
+            {
+                CheckBoxEx cb = time[i];
+                if (cb.Checked == true)
+                    lcb.Add(cb);
+            }
+            for (int i = 0; i < typelist.Length; i++)
+            {
+                CheckBoxEx cb = typelist[i];
+                if (cb.Checked == true)
+                    tcb.Add(cb);
+            }
+            if (lcb.Count == 1)
+            {
+                String cmdText = "";
+                if (lcb.Count > 0)
+                {
+                    cmdText = "select f.shortName,o.oTakeTime ,COUNT(*) AS COUNT FROM orders O, orderFood OF, food F WHERE O.orderDate=OF.orderDate AND O.orderId=OF.orderId AND OF.foodId=F.foodId  and o.status = 'processing'";
+                    cmdText += "AND O.oTakeTime in(";
+                    for (int i = 0; i < lcb.Count; i++)
+                    {
+                        if (i != 0)
+                        {
+                            cmdText += ",";
+                        }
+                        cmdText += "'" + lcb[i].Text + ":00'";
+                    }
+                    cmdText += ")";
+                }
+                if (tcb.Count > 0)
+                {
+                    cmdText += "AND F.fTypeId IN (";
+                    for (int i = 0; i < tcb.Count; i++)
+                    {
+                        if (i != 0)
+                        {
+                            cmdText += ",";
+                        }
+                        cmdText += "'" + tcb[i].Tag + "'";
+                    }
+                    cmdText += ")";
+                }
+                cmdText += "GROUP BY f.foodId";
+                DataTable dt = db.printGrp(cmdText);
+                String s = "Asia Pacific";
+                
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+                    s += "\r" + dt.Rows[j]["shortname"]+ "-Qty:" + dt.Rows[j]["count"];
+                }
+                s += "\rTake Time:" + dt.Rows[0]["otaketime"];
+                String[] context = s.Split('\r');
+                if (!Directory.Exists(@"C:\\My Documents\\" + todayString + "\\"))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(@"C:\\My Documents\\" + todayString + "\\");
+                }
+                String path = @"C:\\My Documents\\" + todayString + "\\O99999999_99-99-99_(1@1).txt";
+                System.IO.File.WriteAllLines(path, context);
+                print.print("O99999999_99-99-99_(1@1).txt");
+            }
+            else
+            {
+                MessageBox.Show("Please choose one time only.");
+            }
+            
+    }
+
         
 
-        /*private void CountView()
-        {
-                        
-            DataTable dt = db.getDb("foodtype");
-            List<String> typelist = new List<string>();
-            DataTable dtdata1 = db.getDb2();
-            
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                typelist.Add(dt.Rows[i]["ftypeid"].ToString());
-            }
-            int[] typeCounter = new int[typelist.Count];
-
-            for (int i = 0; i < dtdata1.Rows.Count; i++)
-            {
-                DataTable dtdata2 = db.getDb2(dtdata1.Rows[i]["orderid"].ToString());
-                for (int j = 0; j < dtdata2.Rows.Count; j++)
-                {
-                    String[] temp = new String[30];
-                    for (int k = 0; k < typelist.Count; k++)
-                    {
-                        if (typelist[k].Equals(dtdata2.Rows[j]["ftypeid"]) )
-                        {
-                            typeCounter[k]++;
-                        }
-                        temp[k] = dtdata2.Rows[j]["ftypeid"].ToString();
-                    }
-                }
-
-            }
-
-
-            for (int i = 0; i < typelist.Count; i++)
-            {
-                Label lb = new Label();
-                lb.Height = screenHeight / 3/2;
-                lb.Width = (screenWidth - 250) / 3/2;
-                lb.Name = dt.Rows[i]["name"].ToString();
-                lb.BackColor = System.Drawing.ColorTranslator.FromHtml("#CFF3FF");
-                lb.BorderStyle = BorderStyle.FixedSingle;
-                lb.Font = new System.Drawing.Font("Microsoft JhengHei", 30, System.Drawing.FontStyle.Bold);
-                
-                lb.Text += dt.Rows[i]["name"].ToString(); 
-                lb.Text += "\n" + typeCounter[i].ToString();
-                FLP2.Controls.Add(lb);
-            }
-            
-        }*/
+        
         
     }
 }
