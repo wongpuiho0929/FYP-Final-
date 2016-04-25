@@ -208,7 +208,7 @@ namespace Login
                             {
                                 cmdText += ",";
                             }
-                            cmdText += "'"+lcb[i].Text + ":00'";
+                            cmdText += "'" + lcb[i].Text + ":00'";
                         }
                         cmdText += ")";
                     }
@@ -261,6 +261,7 @@ namespace Login
             {
                 MessageBox.Show("Printing is Canelled");
             }
+        
         }
         private void addGBFoodType()
         {
