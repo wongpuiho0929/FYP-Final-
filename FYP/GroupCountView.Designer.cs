@@ -33,6 +33,8 @@
             this.gb_type = new System.Windows.Forms.GroupBox();
             this.gb_time = new System.Windows.Forms.GroupBox();
             this.btn_GrpPrint = new System.Windows.Forms.Button();
+            this.btn_TimeClear = new System.Windows.Forms.Button();
+            this.btn_pgop = new System.Windows.Forms.Button();
             this.gb_fiter.SuspendLayout();
             this.gb_time.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +68,8 @@
             // 
             // gb_time
             // 
+            this.gb_time.Controls.Add(this.btn_pgop);
+            this.gb_time.Controls.Add(this.btn_TimeClear);
             this.gb_time.Controls.Add(this.btn_GrpPrint);
             this.gb_time.Location = new System.Drawing.Point(6, 28);
             this.gb_time.Name = "gb_time";
@@ -76,13 +80,36 @@
             // 
             // btn_GrpPrint
             // 
+            this.btn_GrpPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_GrpPrint.Location = new System.Drawing.Point(139, 19);
             this.btn_GrpPrint.Name = "btn_GrpPrint";
             this.btn_GrpPrint.Size = new System.Drawing.Size(61, 64);
             this.btn_GrpPrint.TabIndex = 0;
             this.btn_GrpPrint.Text = "Quick Group by time Print";
             this.btn_GrpPrint.UseVisualStyleBackColor = true;
-            this.btn_GrpPrint.Click += new System.EventHandler(PrintMessage_click);
+            this.btn_GrpPrint.Click += new System.EventHandler(this.PrintMessage_click);
+            // 
+            // btn_TimeClear
+            // 
+            this.btn_TimeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TimeClear.Location = new System.Drawing.Point(47, 59);
+            this.btn_TimeClear.Name = "btn_TimeClear";
+            this.btn_TimeClear.Size = new System.Drawing.Size(75, 23);
+            this.btn_TimeClear.TabIndex = 1;
+            this.btn_TimeClear.Text = "Clear Time";
+            this.btn_TimeClear.UseVisualStyleBackColor = true;
+            this.btn_TimeClear.Click += new System.EventHandler(this.btn_TimeClear_Click);
+            // 
+            // btn_pgop
+            // 
+            this.btn_pgop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_pgop.Location = new System.Drawing.Point(47, 20);
+            this.btn_pgop.Name = "btn_pgop";
+            this.btn_pgop.Size = new System.Drawing.Size(75, 23);
+            this.btn_pgop.TabIndex = 2;
+            this.btn_pgop.Text = "Print Order per hour";
+            this.btn_pgop.UseVisualStyleBackColor = true;
+            this.btn_pgop.Click += new System.EventHandler(this.btn_pgop_Click);
             // 
             // GroupCountView
             // 
@@ -107,5 +134,7 @@
         private System.Windows.Forms.GroupBox gb_time;
         private System.Windows.Forms.GroupBox gb_type;
         private System.Windows.Forms.Button btn_GrpPrint;
+        private System.Windows.Forms.Button btn_TimeClear;
+        private System.Windows.Forms.Button btn_pgop;
     }
 }
