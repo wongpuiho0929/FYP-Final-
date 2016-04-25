@@ -185,7 +185,7 @@ namespace Login
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text.Equals("Change"))
+             if (button1.Text.Equals("Change"))
             {
                 button1.Text = "Save";
                 flowLayoutPanel1.Visible = true;
@@ -225,8 +225,14 @@ namespace Login
         private void pic_Img_DragDrop(object sender, DragEventArgs e)
         {
             String[] s = (string[])e.Data.GetData(DataFormats.FileDrop, true);
-            flowLayoutPanel1.BackgroundImage = Image.FromFile(s[0]);
-            photoPath = s[0];
+            if (s[0].Contains(".jpg") || s[0].Contains(".png") || s[0].Contains(".svg"))
+            {
+                flowLayoutPanel1.BackgroundImage = Image.FromFile(s[0]);
+                photoPath = s[0];
+            }
+            else {
+                MessageBox.Show("Please Input a photo.");
+            }
        
              
         }

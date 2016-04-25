@@ -55,9 +55,9 @@ namespace Login
             this.FormBorderStyle = FormBorderStyle.None;
             this.FLP1.Width = screenWidth - 225;
             this.FLP1.Height = screenHeight;
-            this.gb1.Location = new Point(screenWidth - 200, 10);
-            this.gb1.Width = 400;
-            this.gb1.Height = screenHeight;
+            this.panel1.Location = new Point(screenWidth - 200, 10);
+            this.panel1.Width = 400;
+            this.panel1.Height = screenHeight;
 
             db = new Database();
             db.Connection();
@@ -92,10 +92,10 @@ namespace Login
         }
         private void gb_width()
         {
-            this.gbFunction.Width = this.gb1.Width;
-            this.gb_Information.Width = this.gb1.Width;
-            this.gb_foobType.Width = this.gb1.Width;
-            this.gb_OrderStatus.Width = this.gb1.Width;
+            this.gbFunction.Width = this.panel1.Width;
+            this.gb_Information.Width = this.panel1.Width;
+            this.gb_foobType.Width = this.panel1.Width;
+            this.gb_OrderStatus.Width = this.panel1.Width;
         }
         private void gb_location()
         {
@@ -749,6 +749,11 @@ namespace Login
                 MessageBox.Show("Printing is Canelled");
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 
