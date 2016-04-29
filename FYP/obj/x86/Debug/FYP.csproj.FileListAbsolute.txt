@@ -174,5 +174,4 @@ C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.pdb
 \\psf\Home\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.Staff.resources
 \\psf\Home\Desktop\FYP-Final-\FYP\obj\x86\Debug\Login.viewOrderDetail.resources
 \\psf\Home\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.csproj.GenerateResource.Cache
-C:\Users\wongp\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
 \\psf\Home\Desktop\FYP-Final-\FYP\obj\x86\Debug\FYP.csprojResolveAssemblyReference.cache
